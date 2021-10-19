@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Football Teams</string>
+    <string name="default_error">Error loading football teams!</string>
 </resources>

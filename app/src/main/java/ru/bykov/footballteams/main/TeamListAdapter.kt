@@ -1,4 +1,4 @@
-package ru.bykov.footballteams
+package ru.bykov.footballteams.main
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
