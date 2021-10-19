@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.bykov.footballteams.R
 import ru.bykov.footballteams.databinding.ActivityMainBinding
+import ru.bykov.footballteams.details.showTeamDetails
 import ru.bykov.footballteams.di.TeamListInjection
 import ru.bykov.footballteams.extensions.gone
 import ru.bykov.footballteams.extensions.show
@@ -70,6 +71,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
     // region OnTeamItemClickListener
     override fun onTeamItemClicked(team: FootballTeam) {
         toast("Team ${team.name} clicked")
+        showTeamDetails(team.id)
     }
     // endregion
 }
