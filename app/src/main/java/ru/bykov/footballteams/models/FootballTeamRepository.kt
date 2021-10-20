@@ -1,6 +1,7 @@
 package ru.bykov.footballteams.models
 
 import io.reactivex.Single
+import ru.bykov.footballteams.di.BASE_URL
 
 interface FootballTeamRepository {
 
@@ -18,7 +19,8 @@ interface FootballTeamRepository {
 
         override fun details(id: Int): Single<FootballTeamDetails> {
             return Single.fromCallable {
-                FootballTeamDetails(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "")
+
+                FootballTeamDetails(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "${BASE_URL}teams/1/badge.png")
             }
         }
 

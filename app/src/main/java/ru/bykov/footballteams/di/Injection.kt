@@ -9,6 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.bykov.footballteams.models.FootballTeamRepository
 import ru.bykov.footballteams.network.TeamsApi
 
+const val BASE_URL = "https://android-exam.s3-eu-west-1.amazonaws.com/"
+
 object Injection {
 
     private val httpClient: OkHttpClient by lazy {
@@ -29,7 +31,7 @@ object Injection {
                 GsonConverterFactory.create(gson)
             )
             .client(httpClient)
-            .baseUrl("https://android-exam.s3-eu-west-1.amazonaws.com/")
+            .baseUrl(BASE_URL)
             .build()
     }
 

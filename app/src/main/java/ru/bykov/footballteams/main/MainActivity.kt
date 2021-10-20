@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
     // region OnTeamItemClickListener
     override fun onTeamItemClicked(team: FootballTeam) {
         toast("Team ${team.name} clicked")
-        showTeamDetails(team.id)
+        showTeamDetails(team.id, team.name)
     }
     // endregion
 }
