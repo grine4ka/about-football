@@ -28,12 +28,22 @@ class MainPresenter(
 
     }
 
+    override fun refreshTeams() {
+        compositeDisposable.add(
+            loadFootballTeams(forceUpdate = true)
+                .subscribe(
+                    { view.showContent(it) },
+                    { view.showError() }
+                )
+        )
+    }
+
     override fun destroy() {
         compositeDisposable.clear()
     }
 
-    private fun loadFootballTeams(): Single<List<FootballTeamItem>> {
-        return repository.teams()
+    private fun loadFootballTeams(forceUpdate: Boolean = false): Single<List<FootballTeamItem>> {
+        return repository.teams(forceUpdate)
             .map { teams -> teams.map { FootballTeamItem(it) } }
             .async()
     }

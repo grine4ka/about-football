@@ -12,6 +12,7 @@ object MainContract {
 
     interface Presenter {
         fun loadTeams()
+        fun refreshTeams()
         fun destroy()
     }
 }

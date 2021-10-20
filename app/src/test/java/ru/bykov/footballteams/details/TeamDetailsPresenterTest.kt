@@ -1,4 +1,4 @@
-package ru.bykov.footballteams.main
+package ru.bykov.footballteams.details
 
 import io.kotest.matchers.shouldBe
 import io.reactivex.Single
@@ -9,94 +9,91 @@ import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
 import ru.bykov.footballteams.models.FootballTeamRepository
 import ru.bykov.footballteams.models.Gender
-import ru.bykov.footballteams.ui.FootballTeamItem
 
 @ExtendWith(RxSchedulersOverrideRule::class)
-internal class MainPresenterTest {
+internal class TeamDetailsPresenterTest {
 
     private val view: MockView = MockView()
 
     @AfterEach
     fun resetMocks() {
-        view.state = MainState.UNDEFINED
+        view.state = DetailsState.UNDEFINED
     }
 
     @Nested
-    @DisplayName("Given teams loaded successfully")
-    inner class TeamsLoadedSuccessfully {
+    @DisplayName("Given details loaded successfully")
+    inner class DetailsLoadedSuccessfully {
 
         private val repository: FootballTeamRepository = SuccessRepository()
-        private lateinit var presenter: MainContract.Presenter
+        private lateinit var presenter: TeamDetailsContract.Presenter
 
         @BeforeEach
         fun setup() {
-            presenter = MainPresenter(repository, view)
+            presenter = TeamDetailsPresenter(repository, view)
         }
 
         @Nested
-        @DisplayName("When loadTeams()")
-        inner class OnTeamsLoad {
+        @DisplayName("When loadTeamDetails()")
+        inner class OnDetailsLoad {
 
             @BeforeEach
             fun setup() {
-                presenter.loadTeams()
+                presenter.loadTeamDetails(0)
             }
 
             @Test
             @DisplayName("Then view shows content")
             internal fun viewShowsContent() {
-                view.state shouldBe MainState.CONTENT
+                view.state shouldBe DetailsState.CONTENT
             }
         }
     }
 
     @Nested
-    @DisplayName("Given teams failed to load")
-    inner class TeamsLoadFailed {
+    @DisplayName("Given details failed to load")
+    inner class DetailsLoadFailed {
 
         private val repository: FootballTeamRepository = FailedRepository()
-        private lateinit var presenter: MainContract.Presenter
+        private lateinit var presenter: TeamDetailsContract.Presenter
 
         @BeforeEach
         fun setup() {
-            presenter = MainPresenter(repository, view)
+            presenter = TeamDetailsPresenter(repository, view)
         }
 
         @Nested
-        @DisplayName("When loadTeams()")
-        inner class OnTeamsLoad {
+        @DisplayName("When loadTeamDetails()")
+        inner class OnDetailsLoad {
 
             @BeforeEach
             fun setup() {
-                presenter.loadTeams()
+                presenter.loadTeamDetails(0)
             }
 
             @Test
             @DisplayName("Then view shows error")
             internal fun viewShowsError() {
-                view.state shouldBe MainState.ERROR
+                view.state shouldBe DetailsState.ERROR
             }
         }
     }
+
 }
 
-private class MockView : MainContract.View {
+private class MockView : TeamDetailsContract.View {
 
-    var state: MainState = MainState.UNDEFINED
+    var state: DetailsState = DetailsState.UNDEFINED
 
-    override fun showLoading() {
-        state = MainState.LOADING
+    override fun showDetails(details: FootballTeamDetails) {
+        state = DetailsState.CONTENT
     }
 
-    override fun showContent(teams: List<FootballTeamItem>) {
-        state = MainState.CONTENT
-    }
-
-    override fun showError() {
-        state = MainState.ERROR
+    override fun showError(message: String?) {
+        state = DetailsState.ERROR
     }
 
 }
+
 
 private class SuccessRepository : FootballTeamRepository {
 
@@ -124,6 +121,6 @@ private class FailedRepository : FootballTeamRepository {
     }
 }
 
-private enum class MainState {
-    LOADING, CONTENT, ERROR, UNDEFINED
+private enum class DetailsState {
+    CONTENT, ERROR, UNDEFINED
 }

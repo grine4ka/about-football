@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         viewBinding.teamsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         viewBinding.swipeRefreshLayout.setOnRefreshListener {
-            presenter.loadTeams()
+            presenter.refreshTeams()
         }
 
         presenter = injection.presenter
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
 
     override fun showError() {
         viewBinding.progressBar.gone()
+        viewBinding.swipeRefreshLayout.isRefreshing = false
         toast(getString(R.string.default_error))
     }
     // endregion
