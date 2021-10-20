@@ -6,7 +6,7 @@ object TeamDetailsContract {
 
     interface View {
         fun showDetails(details: FootballTeamDetails)
-        fun showError()
+        fun showError(message: String?)
     }
 
     interface Presenter {

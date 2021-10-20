@@ -2,6 +2,7 @@ package ru.bykov.footballteams.models
 
 import io.reactivex.Single
 import ru.bykov.footballteams.di.BASE_URL
+import ru.bykov.footballteams.network.TeamsApi
 
 interface FootballTeamRepository {
 
@@ -9,20 +10,16 @@ interface FootballTeamRepository {
 
     fun details(id: Int): Single<FootballTeamDetails>
 
-    class Mock : FootballTeamRepository {
+    class Impl(private val api: TeamsApi) : FootballTeamRepository {
 
         override fun teams(): Single<List<FootballTeam>> {
-            return Single.fromCallable {
-                listOf(FootballTeam(1, "FC Barcelona"))
-            }
+            return api.getTeams()
         }
 
         override fun details(id: Int): Single<FootballTeamDetails> {
-            return Single.fromCallable {
-
-                FootballTeamDetails(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "${BASE_URL}teams/1/badge.png")
+            return api.getTeamDetails(id).map {
+                it.copy(badgeUrl = BASE_URL + it.badgeUrl)
             }
         }
-
     }
 }

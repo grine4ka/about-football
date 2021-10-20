@@ -16,7 +16,7 @@ class TeamDetailsPresenter(
                 .async()
                 .subscribe(
                     { view.showDetails(it) },
-                    { view.showError() }
+                    { view.showError(it.message) }
                 )
         )
     }

@@ -8,9 +8,9 @@ import ru.bykov.footballteams.models.FootballTeamDetails
 
 interface TeamsApi {
 
-    @GET("teams/teams.json")
+    @GET("/teams/teams.json")
     fun getTeams(): Single<List<FootballTeam>>
 
-    @GET("teams/{id}/team.json")
-    fun getTeamDetails(@Path("id") id: String): Single<FootballTeamDetails>
+    @GET("/teams/{id}/team.json")
+    fun getTeamDetails(@Path("id") id: Int): Single<FootballTeamDetails>
 }

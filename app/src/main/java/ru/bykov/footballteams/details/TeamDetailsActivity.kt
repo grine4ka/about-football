@@ -66,8 +66,8 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         viewBinding.description.text = details.description
     }
 
-    override fun showError() {
-        toast(getString(R.string.default_error))
+    override fun showError(message: String?) {
+        toast(message ?: getString(R.string.default_error))
     }
     // endregion
 

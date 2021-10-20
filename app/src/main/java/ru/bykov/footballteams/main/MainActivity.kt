@@ -2,6 +2,7 @@ package ru.bykov.footballteams.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import ru.bykov.footballteams.R
 import ru.bykov.footballteams.databinding.ActivityMainBinding
 import ru.bykov.footballteams.details.showTeamDetails
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         setContentView(viewBinding.root)
 
         viewBinding.teamsRecycler.adapter = adapter
+        viewBinding.teamsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         viewBinding.swipeRefreshLayout.setOnRefreshListener {
             presenter.loadTeams()
@@ -70,7 +72,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
 
     // region OnTeamItemClickListener
     override fun onTeamItemClicked(team: FootballTeam) {
-        toast("Team ${team.name} clicked")
         showTeamDetails(team.id, team.name)
     }
     // endregion
