@@ -4,15 +4,25 @@
 
 I need to practice my android development skills to be at the cutting edge of the framework
 
-## Possible improvements
+## What's already in repository
+
+- **Language**: _Kotlin_
+- **Architecture**: _MVP_
+- **Network**: _Okhttp/Retrofit + RxJava_
+- **DI**: _No. Self-written_
+- **Image Processing**: _Glide_
+
+## Further improvements
 
 - Move to [api-football.com](https://api-football.com) API
+- DiffUtils and AdapterDelegates for list of teams
 - Move to MVVM or MVI  (or any other UDF architecture)
 - Cache to DB or file
 - Use Jetpack Compose for UI
 - Use [Cicerone](https://github.com/terrakok/Cicerone) to open another screen
 - Recycler Item full screen width
 - Beautiful activity transitions
+- Kotlin coroutines + Flow ??
 
 ## Deprecated
 
