@@ -4,6 +4,16 @@
 
 I need to practice my android development skills to be at the cutting edge of the framework
 
+## Possible improvements
+
+- Move to [api-football.com](https://api-football.com) API
+- Move to MVVM or MVI  (or any other UDF architecture)
+- Cache to DB or file
+- Use Jetpack Compose for UI
+- Use [Cicerone](https://github.com/terrakok/Cicerone) to open another screen
+- Recycler Item full screen width
+- Beautiful activity transitions
+
 ## Deprecated
 
 At first it was a home assignment for the ForzaFootball company
@@ -35,11 +45,3 @@ We encourage usage of Kotlin and RxJava2 for the implementation but you are free
 2. Create UI tests that proves that your implementation works as intended.
 3. We will not focus on UI design in this assignment. Great UI design will be treated as a good bonus.
 4. Exponential backoffs for requests.
-
-## Further possible improvements
-- Move to MVVM or MVI  (or any other UDF architecture)
-- Cache to DB or file
-- Use Jetpack Compose for UI
-- Use [Cicerone](https://github.com/terrakok/Cicerone) to open another screen
-- Recycler Item full screen width
-- Beautiful activity transitions
