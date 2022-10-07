@@ -39,10 +39,6 @@ android {
     packagingOptions {
         resources.excludes.add("META-INF/**")
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 // Configure common test runtime dependencies for *all* android projects

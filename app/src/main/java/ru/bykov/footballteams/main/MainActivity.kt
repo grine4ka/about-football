@@ -1,10 +1,12 @@
 package ru.bykov.footballteams.main
 
 import android.os.Bundle
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.bykov.footballteams.R
-import ru.bykov.footballteams.databinding.ActivityMainBinding
 import ru.bykov.footballteams.details.showTeamDetails
 import ru.bykov.footballteams.di.TeamListInjection
 import ru.bykov.footballteams.extensions.gone
@@ -24,8 +26,16 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         injection.adapter
     }
 
-    private val viewBinding: ActivityMainBinding by lazy(LazyThreadSafetyMode.NONE) {
-        ActivityMainBinding.inflate(layoutInflater)
+    private val teamsRecycler: RecyclerView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.teams_recycler)
+    }
+
+    private val swipeRefreshLayout: SwipeRefreshLayout by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.swipe_refresh_layout)
+    }
+
+    private val progressBar: ProgressBar by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.progress_bar)
     }
 
     private lateinit var presenter: MainContract.Presenter
@@ -33,12 +43,12 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
     // region Activity Callbacks
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(viewBinding.root)
+        setContentView(R.layout.activity_main)
 
-        viewBinding.teamsRecycler.adapter = adapter
-        viewBinding.teamsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        teamsRecycler.adapter = adapter
+        teamsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        viewBinding.swipeRefreshLayout.setOnRefreshListener {
+        swipeRefreshLayout.setOnRefreshListener {
             presenter.refreshTeams()
         }
 
@@ -54,19 +64,19 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
 
     // region MainContract.View
     override fun showLoading() {
-        viewBinding.progressBar.show()
+        progressBar.show()
     }
 
     override fun showContent(teams: List<FootballTeamItem>) {
-        viewBinding.swipeRefreshLayout.isRefreshing = false
-        viewBinding.progressBar.gone()
-        viewBinding.teamsRecycler.show()
+        swipeRefreshLayout.isRefreshing = false
+        progressBar.gone()
+        teamsRecycler.show()
         adapter.setItems(teams)
     }
 
     override fun showError() {
-        viewBinding.progressBar.gone()
-        viewBinding.swipeRefreshLayout.isRefreshing = false
+        progressBar.gone()
+        swipeRefreshLayout.isRefreshing = false
         toast(getString(R.string.default_error))
     }
     // endregion
