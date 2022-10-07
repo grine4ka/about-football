@@ -1,19 +1,24 @@
 package ru.bykov.footballteams.ui
 
+import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-import ru.bykov.footballteams.databinding.ItemFootballTeamBinding
+import ru.bykov.footballteams.R
 
-abstract class BaseViewHolder<in T : DisplayableItem, in B : ViewBinding>(
-    viewBinding: B
-) : RecyclerView.ViewHolder(viewBinding.root) {
+abstract class BaseViewHolder<in T : DisplayableItem>(
+    protected val view: View
+) : RecyclerView.ViewHolder(view) {
     open fun bind(item: T) = Unit
 }
 
 class FootballTeamViewHolder(
-    private val viewBinding: ItemFootballTeamBinding,
+    itemView: View,
     itemClickListener: (Int) -> Unit
-) : BaseViewHolder<FootballTeamItem, ItemFootballTeamBinding>(viewBinding) {
+) : BaseViewHolder<FootballTeamItem>(itemView) {
+
+    private val teamName: TextView by lazy(LazyThreadSafetyMode.NONE) {
+        itemView.findViewById(R.id.team_name)
+    }
 
     init {
         itemView.setOnClickListener {
@@ -25,7 +30,7 @@ class FootballTeamViewHolder(
     }
 
     override fun bind(item: FootballTeamItem) {
-        viewBinding.teamName.text = item.footballTeam.name
+        teamName.text = item.footballTeam.name
     }
 }
 
