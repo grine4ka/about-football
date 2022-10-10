@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("com.bykov.android")
     id("de.mannodermaus.android-junit5")
+    id("com.klaxit.hiddensecrets")
 }
 
 val versionString = version as String
@@ -38,6 +39,13 @@ android {
 
     packagingOptions {
         resources.excludes.add("META-INF/**")
+    }
+
+    // Enable NDK build
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+        }
     }
 }
 
