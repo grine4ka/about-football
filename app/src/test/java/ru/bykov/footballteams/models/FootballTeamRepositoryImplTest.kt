@@ -19,7 +19,7 @@ internal class FootballTeamRepositoryImplTest {
 
         @BeforeEach
         fun setup() {
-            repository = FootballTeamRepository.Impl(SuccessApi())
+            repository = RemoteFootballTeamRepository(SuccessApi())
         }
 
         @Nested

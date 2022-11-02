@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
 
+    implementation(project(":domain"))
     // Base
     implementation("androidx.core:core-ktx")
     implementation("androidx.appcompat:appcompat")
