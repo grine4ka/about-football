@@ -8,12 +8,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.bykov.footballteams.models.FootballTeamRepository
-import ru.bykov.footballteams.models.InMemoryCachedFootballTeamRepository
-import ru.bykov.footballteams.models.RemoteFootballTeamRepository
 import ru.bykov.footballteams.network.TeamsApi
+import ru.bykov.footballteams.repository.FootballTeamRepository
+import ru.bykov.footballteams.repository.InMemoryCachedFootballTeamRepository
+import ru.bykov.footballteams.repository.RemoteFootballTeamRepository
 
-const val BASE_URL = "https://android-exam.s3-eu-west-1.amazonaws.com"
+private const val BASE_URL = "https://android-exam.s3-eu-west-1.amazonaws.com"
 
 object Injection {
 
@@ -52,7 +52,7 @@ object Injection {
 
     val repository: FootballTeamRepository by lazy {
         InMemoryCachedFootballTeamRepository(
-            RemoteFootballTeamRepository(teamsApi)
+            RemoteFootballTeamRepository(BASE_URL, teamsApi)
         )
     }
 }

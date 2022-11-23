@@ -1,9 +1,11 @@
-package ru.bykov.footballteams.models
+package ru.bykov.footballteams.repository
 
 import android.util.SparseArray
 import io.reactivex.Single
 import ru.bykov.footballteams.extensions.switchToSingleIfEmpty
 import ru.bykov.footballteams.extensions.toMaybe
+import ru.bykov.footballteams.models.FootballTeam
+import ru.bykov.footballteams.models.FootballTeamDetails
 
 class InMemoryCachedFootballTeamRepository(
     private val remote: FootballTeamRepository,
@@ -21,10 +23,10 @@ class InMemoryCachedFootballTeamRepository(
             }
     }
 
-    override fun details(id: Int): Single<FootballTeamDetails> {
-        return teamDetails[id].toMaybe()
+    override fun details(teamId: Int): Single<FootballTeamDetails> {
+        return teamDetails[teamId].toMaybe()
             .switchToSingleIfEmpty {
-                remote.details(id).doOnSuccess { details ->
+                remote.details(teamId).doOnSuccess { details ->
                     teamDetails.append(details.id, details)
                 }
             }

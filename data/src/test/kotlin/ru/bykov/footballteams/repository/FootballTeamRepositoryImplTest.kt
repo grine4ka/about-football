@@ -1,4 +1,4 @@
-package ru.bykov.footballteams.models
+package ru.bykov.footballteams.repository
 
 import io.kotest.matchers.string.shouldStartWith
 import io.reactivex.Single
@@ -6,7 +6,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import ru.bykov.footballteams.di.BASE_URL
+import ru.bykov.footballteams.entity.FootballTeamDetailsEntity
+import ru.bykov.footballteams.entity.FootballTeamEntity
+import ru.bykov.footballteams.entity.Gender
+import ru.bykov.footballteams.models.FootballTeamDetails
 import ru.bykov.footballteams.network.TeamsApi
 
 internal class FootballTeamRepositoryImplTest {
@@ -16,10 +19,11 @@ internal class FootballTeamRepositoryImplTest {
     inner class DetailsLoadedSuccessfully {
 
         private lateinit var repository: FootballTeamRepository
+        private val baseUrl = "https://example.com"
 
         @BeforeEach
         fun setup() {
-            repository = RemoteFootballTeamRepository(SuccessApi())
+            repository = RemoteFootballTeamRepository(baseUrl, SuccessApi())
         }
 
         @Nested
@@ -38,20 +42,20 @@ internal class FootballTeamRepositoryImplTest {
             internal fun viewShowsContent() {
                 val observer = details.test()
                 val teamDetails = observer.values().first()
-                teamDetails.badgeUrl shouldStartWith BASE_URL
+                teamDetails.badgeUrl shouldStartWith baseUrl
             }
         }
     }
 }
 
 private class SuccessApi : TeamsApi {
-    override fun getTeams(): Single<List<FootballTeam>> {
+    override fun getTeams(): Single<List<FootballTeamEntity>> {
         throw NotImplementedError("Doesn't need in this test")
     }
 
-    override fun getTeamDetails(id: Int): Single<FootballTeamDetails> {
+    override fun getTeamDetails(id: Int): Single<FootballTeamDetailsEntity> {
         return Single.fromCallable {
-            FootballTeamDetails(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "/teams/1/badge.png")
+            FootballTeamDetailsEntity(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "/teams/1/badge.png")
         }
     }
 }

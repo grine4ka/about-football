@@ -5,12 +5,13 @@ plugins {
 dependencies {
 
     implementation(project(":domain"))
+    implementation(project(":data"))
+
     // Base
     implementation("androidx.core:core-ktx")
     implementation("androidx.appcompat:appcompat")
 
     // Rx
-    implementation("io.reactivex.rxjava2:rxjava")
     implementation("io.reactivex.rxjava2:rxandroid")
 
     // Network
@@ -26,12 +27,6 @@ dependencies {
 
     // Images
     implementation("com.github.bumptech.glide:glide")
-
-    // Unit tests
-    // (Required) Writing and executing Unit Tests on the JUnit Platform
-    testImplementation("io.kotest:kotest-runner-junit5")
-    testImplementation("io.kotest:kotest-assertions-core")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
 
     // UI tests
     androidTestImplementation("androidx.test.ext:junit")

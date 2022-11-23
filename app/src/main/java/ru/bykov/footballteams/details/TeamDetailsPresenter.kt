@@ -2,7 +2,7 @@ package ru.bykov.footballteams.details
 
 import io.reactivex.disposables.CompositeDisposable
 import ru.bykov.footballteams.extensions.async
-import ru.bykov.footballteams.models.FootballTeamRepository
+import ru.bykov.footballteams.repository.FootballTeamRepository
 
 class TeamDetailsPresenter(
     private val repository: FootballTeamRepository,
