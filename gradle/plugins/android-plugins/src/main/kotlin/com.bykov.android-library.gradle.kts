@@ -21,6 +21,10 @@ dependencies {
     implementation(platform("com.bykov.aboutfootball:platform"))
     androidTestImplementation(platform("com.bykov.aboutfootball:platform"))
 
+    // (Required) Writing and executing Unit Tests on the JUnit Platform
+    testImplementation("io.kotest:kotest-runner-junit5")
+    testImplementation("io.kotest:kotest-assertions-core")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
     androidTestRuntimeOnly("androidx.test.espresso:espresso-core")

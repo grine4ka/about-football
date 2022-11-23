@@ -7,8 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import ru.bykov.footballteams.RxSchedulersOverrideRule
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
-import ru.bykov.footballteams.models.FootballTeamRepository
-import ru.bykov.footballteams.models.Gender
+import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.ui.FootballTeamItem
 
 @ExtendWith(RxSchedulersOverrideRule::class)
@@ -106,9 +105,9 @@ private class SuccessRepository : FootballTeamRepository {
         }
     }
 
-    override fun details(id: Int): Single<FootballTeamDetails> {
+    override fun details(teamId: Int): Single<FootballTeamDetails> {
         return Single.fromCallable {
-            FootballTeamDetails(1, "FC Barcelona", Gender.MALE, false, "Mesque un club", "")
+            FootballTeamDetails(1, "FC Barcelona", "male", false, "Mesque un club", "")
         }
     }
 }
@@ -119,7 +118,7 @@ private class FailedRepository : FootballTeamRepository {
         return Single.error(Throwable("Data not loaded"))
     }
 
-    override fun details(id: Int): Single<FootballTeamDetails> {
+    override fun details(teamId: Int): Single<FootballTeamDetails> {
         return Single.error(Throwable("Data not loaded"))
     }
 }

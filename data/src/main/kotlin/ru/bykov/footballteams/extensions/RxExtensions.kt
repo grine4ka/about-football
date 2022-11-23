@@ -3,15 +3,9 @@ package ru.bykov.footballteams.extensions
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.pow
-
-fun <T> Single<T>.async(): Single<T> {
-    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-}
 
 fun <T> List<T>.toMaybe(): Maybe<List<T>> {
     return if (this.isEmpty()) {

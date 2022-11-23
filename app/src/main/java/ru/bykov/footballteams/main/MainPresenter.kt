@@ -3,7 +3,7 @@ package ru.bykov.footballteams.main
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import ru.bykov.footballteams.extensions.async
-import ru.bykov.footballteams.models.FootballTeamRepository
+import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.ui.FootballTeamItem
 
 class MainPresenter(

@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(platform("org.junit:junit-bom:5.7.2")) { (this as ExternalModuleDependency).version { reject("[5.8.0,)") } } // Do not Upgrade to 5.8: https://github.com/gradle/gradle/issues/18627
+    api(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 }
 
 dependencies.constraints {
@@ -20,7 +21,8 @@ dependencies.constraints {
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
-    api("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    api("com.squareup.okhttp3:okhttp")
+    api("com.squareup.okhttp3:logging-interceptor")
     api("com.google.code.gson:gson:2.10")
 
     // UI
