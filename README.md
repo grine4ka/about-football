@@ -7,7 +7,7 @@ I need to practice my android development skills to be at the cutting edge of th
 ## What's already in repository
 
 - **Language**: _Kotlin_
-- **Architecture**: _MVP_
+- **Architecture**: _Clean Architecture + MVP_
 - **Network**: _Okhttp/Retrofit + RxJava_
 - **DI**: _No. Self-written_
 - **Image Processing**: _Glide_
