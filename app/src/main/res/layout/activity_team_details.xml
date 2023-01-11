@@ -34,31 +34,13 @@
             app:layout_constraintTop_toTopOf="@id/team_badge" />
 
         <TextView
-            android:id="@+id/gender_label"
-            style="@style/DetailsLabelStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_label"
-            app:layout_constraintStart_toEndOf="@id/team_badge"
-            app:layout_constraintTop_toBottomOf="@id/team_name_label" />
-
-        <TextView
-            android:id="@+id/gender"
-            style="@style/DetailsValueStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/barrier"
-            app:layout_constraintBaseline_toBaselineOf="@id/gender_label"
-            tools:text="Male" />
-
-        <TextView
             android:id="@+id/national_label"
             style="@style/DetailsLabelStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/national_label"
             app:layout_constraintStart_toEndOf="@id/team_badge"
-            app:layout_constraintTop_toBottomOf="@id/gender_label" />
+            app:layout_constraintTop_toBottomOf="@id/team_name_label" />
 
         <TextView
             android:id="@+id/national"
@@ -70,22 +52,22 @@
             tools:text="True" />
 
         <TextView
-            android:id="@+id/description_label"
+            android:id="@+id/venue_label"
             style="@style/DetailsLabelStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/description_label"
+            android:text="@string/venue_label"
             app:layout_constraintStart_toEndOf="@id/team_badge"
             app:layout_constraintTop_toBottomOf="@id/national_label" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/venue"
             style="@style/DetailsValueStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/team_badge"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description_label"
+            app:layout_constraintTop_toBottomOf="@id/venue_label"
             tools:text="Very very long and not in one line description of a football team" />
 
         <androidx.constraintlayout.widget.Barrier
@@ -93,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="end"
-            app:constraint_referenced_ids="description_label,gender_label,national_label"/>
+            app:constraint_referenced_ids="venue_label,national_label"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

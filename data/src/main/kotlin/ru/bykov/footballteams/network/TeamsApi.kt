@@ -2,15 +2,20 @@ package ru.bykov.footballteams.network
 
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Path
-import ru.bykov.footballteams.entity.FootballTeamDetailsEntity
-import ru.bykov.footballteams.entity.FootballTeamEntity
+import retrofit2.http.Query
+import ru.bykov.footballteams.entity.ApiEnvelope
+import ru.bykov.footballteams.entity.FullTeamEntity
 
 interface TeamsApi {
 
-    @GET("/teams/teams.json")
-    fun getTeams(): Single<List<FootballTeamEntity>>
+    @GET("/teams")
+    fun getTeams(
+        @Query("league") leagueId: Int = 39,
+        @Query("season") year: String = "2022"
+    ): Single<ApiEnvelope<List<FullTeamEntity>>>
 
-    @GET("/teams/{id}/team.json")
-    fun getTeamDetails(@Path("id") id: Int): Single<FootballTeamDetailsEntity>
+    @GET("/teams")
+    fun getTeamDetails(
+        @Query("id") id: Int
+    ): Single<ApiEnvelope<List<FullTeamEntity>>>
 }

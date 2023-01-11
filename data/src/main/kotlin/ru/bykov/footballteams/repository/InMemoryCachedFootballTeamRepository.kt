@@ -7,6 +7,7 @@ import ru.bykov.footballteams.extensions.toMaybe
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
 
+// TODO move all this code to UseCase
 class InMemoryCachedFootballTeamRepository(
     private val remote: FootballTeamRepository,
     private val teams: MutableList<FootballTeam> = mutableListOf(),

@@ -5,4 +5,4 @@ plugins {
     id("com.bykov.settings")
 }
 
-rootProject.name = "Football Teams"
+rootProject.name = "Footea"

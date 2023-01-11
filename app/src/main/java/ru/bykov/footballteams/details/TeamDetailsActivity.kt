@@ -42,16 +42,12 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         findViewById(R.id.team_name_label)
     }
 
-    private val gender: TextView by lazy(LazyThreadSafetyMode.NONE) {
-        findViewById(R.id.gender)
-    }
-
     private val national: TextView by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.national)
     }
 
-    private val description: TextView by lazy(LazyThreadSafetyMode.NONE) {
-        findViewById(R.id.description)
+    private val venue: TextView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.venue)
     }
 
     // region Activity Callbacks
@@ -78,9 +74,8 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
             .error(R.drawable.ic_launcher_background)
             .into(teamBadge)
         teamNameLabel.text = details.name
-        gender.text = details.gender.toString()
         national.text = details.national.toString()
-        description.text = details.description
+        venue.text = details.venue
     }
 
     override fun showError(message: String?) {
