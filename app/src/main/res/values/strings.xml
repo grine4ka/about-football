@@ -2,7 +2,6 @@
     <string name="app_name">Football Teams</string>
     <string name="default_error">Error loading football teams!</string>
     <string name="badge_content_description">Team badge</string>
-    <string name="gender_label">Gender</string>
     <string name="national_label">National</string>
-    <string name="description_label">Description</string>
+    <string name="venue_label">Venue</string>
 </resources>

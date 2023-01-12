@@ -8,24 +8,40 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.bykov.footballteams.BuildConfig
+import ru.bykov.footballteams.Secrets
 import ru.bykov.footballteams.network.TeamsApi
 import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.repository.InMemoryCachedFootballTeamRepository
 import ru.bykov.footballteams.repository.RemoteFootballTeamRepository
 
-private const val BASE_URL = "https://android-exam.s3-eu-west-1.amazonaws.com"
+private const val BASE_URL = "https://v3.football.api-sports.io"
 
 object Injection {
 
-    private val interceptor: Interceptor by lazy {
+    private val loggingInterceptor: Interceptor by lazy {
         HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
         }
     }
 
+    private val secrets: Secrets = Secrets()
+
+    private val authInterceptor: Interceptor by lazy {
+        Interceptor { chain ->
+            chain.proceed(
+                chain.request()
+                    .newBuilder()
+                    .addHeader("x-apisports-key", secrets.getApiFootballKey(BuildConfig.APPLICATION_ID))
+                    .build()
+            )
+        }
+    }
+
     private val httpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
-            .addNetworkInterceptor(interceptor)
+            .addNetworkInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 
@@ -52,7 +68,7 @@ object Injection {
 
     val repository: FootballTeamRepository by lazy {
         InMemoryCachedFootballTeamRepository(
-            RemoteFootballTeamRepository(BASE_URL, teamsApi)
+            RemoteFootballTeamRepository(teamsApi)
         )
     }
 }

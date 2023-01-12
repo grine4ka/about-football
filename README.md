@@ -1,16 +1,22 @@
-# About Football
+# Footea
 
-## Goals
+Footea demonstrates my Android development skills.  
+For these purposes I used the best game in the world - Football.
 
-I need to practice my android development skills to be at the cutting edge of the framework
-
-## What's already in repository
+## Tech Stack & Libraries
 
 - **Language**: _Kotlin_
 - **Architecture**: _Clean Architecture + MVP_
-- **Network**: _Okhttp/Retrofit + RxJava_
+  - Package by layer
+- **Network**
+  - [Retrofit2 & OkHttp3](https://github.com/square/retrofit)
+  - [RxJava2](https://github.com/ReactiveX/RxJava)
 - **DI**: _No. Self-written_
-- **Image Processing**: _Glide_
+- **Image Processing**: 
+  - [Glide](https://github.com/bumptech/glide)
+- **Gradle**
+  - [Understanding Gradle](https://www.youtube.com/playlist?list=PLWQK2ZdV4Yl2k2OmC_gsjDpdIBTN0qqkE) by Jendrik Johannes
+  - [Full Android Project Setup](https://github.com/jjohannes/gradle-project-setup-howto/tree/android)
 
 ## Further improvements
 
@@ -23,6 +29,11 @@ I need to practice my android development skills to be at the cutting edge of th
 - Recycler Item full screen width
 - Beautiful activity transitions
 - Kotlin coroutines + Flow ??
+
+## Open API
+
+Footea is using [api-football](https://www.api-football.com/) for constructing RESTful API.
+api-football provides RESTful API to highly detailed objects built from thousands of lines of data related to football.
 
 ## Deprecated
 
