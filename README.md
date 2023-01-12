@@ -5,22 +5,20 @@ For these purposes I used the best game in the world - Football.
 
 ## Tech Stack & Libraries
 
-- **Language**: _Kotlin_
-- **Architecture**: _Clean Architecture + MVP_
-  - Package by layer
-- **Network**
-  - [Retrofit2 & OkHttp3](https://github.com/square/retrofit)
-  - [RxJava2](https://github.com/ReactiveX/RxJava)
-- **DI**: _No. Self-written_
-- **Image Processing**: 
-  - [Glide](https://github.com/bumptech/glide)
-- **Gradle**
+- Minimum SDK level 26 ([92.5% users in Jan 2023](https://apilevels.com/))
+- [Kotlin](https://kotlinlang.org/) based, [RxJava2](https://github.com/ReactiveX/RxJava) for asynchronous.
+- Architecture:
+  - _Clean Architecture_
+  - _MVP_
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) for communicating with REST APIs
+- **No DI frameworks**
+- [Glide](https://github.com/bumptech/glide) for downloading and processing images
+- Gradle
   - [Understanding Gradle](https://www.youtube.com/playlist?list=PLWQK2ZdV4Yl2k2OmC_gsjDpdIBTN0qqkE) by Jendrik Johannes
   - [Full Android Project Setup](https://github.com/jjohannes/gradle-project-setup-howto/tree/android)
 
 ## Further improvements
 
-- Move to [api-football.com](https://api-football.com) API
 - DiffUtils and AdapterDelegates for list of teams
 - Move to MVVM or MVI  (or any other UDF architecture)
 - Cache to DB or file
