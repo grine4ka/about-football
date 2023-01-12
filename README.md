@@ -35,34 +35,28 @@ For these purposes I used the best game in the world - Football.
 Footea is using [api-football](https://www.api-football.com/) for constructing RESTful API.
 api-football provides RESTful API to highly detailed objects built from thousands of lines of data related to football.
 
-## Deprecated
+# License
 
-At first it was a home assignment for the ForzaFootball company
+```xml
+MIT License
 
-### Task
-Your objective is to create screens with information about football teams using the endpoints below.
+Copyright (c) 2023 Grigorii Bykov (grine4ka)
 
-The base url for requests and images:  
-https://android-exam.s3-eu-west-1.amazonaws.com
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Fetch a list of team objects from:  
-/teams/teams.json
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-
-Further team details can be found at:
-/teams/<id>/team.json 
-
-### Method (Deprecated)
-We encourage usage of Kotlin and RxJava2 for the implementation but you are free to use Java or any frameworks or libraries that you see fit.
-
-#### Requirements (Deprecated)
-1. Write an implementation that fetches teams from the provided endpoints.
-2. Present the teams in a list.
-3. Create a details screen for a team showing additional information.
-4. Cache data to make the application work offline.
-
-#### Bonus tasks (Deprecated)
-1. Create Unit tests that proves that your implementation works as intended.
-2. Create UI tests that proves that your implementation works as intended.
-3. We will not focus on UI design in this assignment. Great UI design will be treated as a good bonus.
-4. Exponential backoffs for requests.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
