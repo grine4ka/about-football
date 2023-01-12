@@ -11,12 +11,12 @@ val versionString = version as String
 val versionInt = versionString.split(".")[0].toInt() * 1000 + versionString.split(".")[1].toInt()
 
 android {
-    compileSdk = 31
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "ru.bykov.footballteams"
         minSdk = 26
-        targetSdk = 31
+        targetSdk = 33
         versionCode = versionInt
         versionName = versionString
 
