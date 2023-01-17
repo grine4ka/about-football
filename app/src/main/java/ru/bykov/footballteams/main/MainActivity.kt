@@ -3,7 +3,6 @@ package ru.bykov.footballteams.main
 import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.bykov.footballteams.R
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         setContentView(R.layout.activity_main)
 
         teamsRecycler.adapter = adapter
-        teamsRecycler.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         swipeRefreshLayout.setOnRefreshListener {
             presenter.refreshTeams()

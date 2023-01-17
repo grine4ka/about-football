@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football Teams</string>
+    <string name="app_name">Footea</string>
     <string name="default_error">Error loading football teams!</string>
     <string name="badge_content_description">Team badge</string>
     <string name="national_label">National</string>
