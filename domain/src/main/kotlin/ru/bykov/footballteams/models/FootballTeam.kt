@@ -2,5 +2,6 @@ package ru.bykov.footballteams.models
 
 class FootballTeam(
     val id: Int,
-    val name: String
+    val name: String,
+    val logoUrl: String
 )

@@ -47,6 +47,14 @@ android {
             path = file("src/main/cpp/CMakeLists.txt")
         }
     }
+
+    lint {
+        // If set to true, lint also checks all dependencies as part of its analysis.
+        // Recommended for projects consisting of an app with library dependencies.
+        checkDependencies = true
+        // Fallback lint configuration (default severities, etc.)
+        lintConfig = file("android-lint.xml")
+    }
 }
 
 // Configure common test runtime dependencies for *all* android projects

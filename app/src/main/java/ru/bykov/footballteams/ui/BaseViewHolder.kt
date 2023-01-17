@@ -1,8 +1,9 @@
 package ru.bykov.footballteams.ui
 
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.bykov.footballteams.R
 
 abstract class BaseViewHolder<in T : DisplayableItem>(
@@ -16,8 +17,8 @@ class FootballTeamViewHolder(
     itemClickListener: (Int) -> Unit
 ) : BaseViewHolder<FootballTeamItem>(itemView) {
 
-    private val teamName: TextView by lazy(LazyThreadSafetyMode.NONE) {
-        itemView.findViewById(R.id.team_name)
+    private val teamImage: AppCompatImageView by lazy(LazyThreadSafetyMode.NONE) {
+        itemView.findViewById(R.id.team_image)
     }
 
     init {
@@ -30,7 +31,11 @@ class FootballTeamViewHolder(
     }
 
     override fun bind(item: FootballTeamItem) {
-        teamName.text = item.footballTeam.name
+        Glide.with(itemView.context)
+            .asBitmap()
+            .load(item.footballTeam.logoUrl)
+            .error(R.drawable.ic_launcher_background)
+            .into(teamImage)
     }
 }
 

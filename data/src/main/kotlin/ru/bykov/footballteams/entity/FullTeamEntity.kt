@@ -13,7 +13,8 @@ class FullTeamEntity(
 
 fun FullTeamEntity.toTeam(): FootballTeam = FootballTeam(
     team.id,
-    team.name
+    team.name,
+    team.logo
 )
 
 fun FullTeamEntity.toTeamDetails(): FootballTeamDetails = FootballTeamDetails(

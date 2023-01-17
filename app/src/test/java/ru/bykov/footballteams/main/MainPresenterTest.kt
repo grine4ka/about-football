@@ -101,7 +101,7 @@ private class SuccessRepository : FootballTeamRepository {
 
     override fun teams(forceUpdate: Boolean): Single<List<FootballTeam>> {
         return Single.fromCallable {
-            listOf(FootballTeam(1, "FC Barcelona"))
+            listOf(FootballTeam(1, "FC Barcelona", ""))
         }
     }
 
