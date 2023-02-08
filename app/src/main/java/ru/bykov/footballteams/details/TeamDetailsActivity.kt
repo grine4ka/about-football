@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import ru.bykov.footballteams.R
 import ru.bykov.footballteams.di.TeamDetailsInjection
@@ -34,12 +35,16 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
 
     private lateinit var presenter: TeamDetailsContract.Presenter
 
+    private val toolbar: Toolbar by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.toolbar)
+    }
+
     private val teamBadge: ImageView by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.team_badge)
     }
 
-    private val teamNameLabel: TextView by lazy(LazyThreadSafetyMode.NONE) {
-        findViewById(R.id.team_name_label)
+    private val teamName: TextView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.team_name)
     }
 
     private val national: TextView by lazy(LazyThreadSafetyMode.NONE) {
@@ -54,8 +59,11 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_details)
-
-        supportActionBar?.title = intent.getStringExtra(EXTRA_TEAM_NAME)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         presenter = injection.presenter
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
@@ -73,8 +81,8 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
             .load(details.badgeUrl)
             .error(R.drawable.ic_launcher_background)
             .into(teamBadge)
-        teamNameLabel.text = details.name
-        national.text = details.national.toString()
+        teamName.text = details.name
+        national.text = details.country
         venue.text = details.venue
     }
 

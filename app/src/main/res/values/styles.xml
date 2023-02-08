@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DetailsLabelStyle">
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="TeamDetails.Title" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/white_12</item>
     </style>
 
-    <style name="DetailsValueStyle">
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:textSize">16sp</item>
+    <style name="TeamDetails.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/white_12</item>
     </style>
+
+    <style name="TeamDetails.Label" parent="TextAppearance.MaterialComponents.Caption"/>
+
+    <style name="TeamDetails.Value" parent="TextAppearance.MaterialComponents.Body1"/>
 </resources>

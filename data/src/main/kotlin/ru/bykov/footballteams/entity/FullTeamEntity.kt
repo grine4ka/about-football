@@ -20,7 +20,7 @@ fun FullTeamEntity.toTeam(): FootballTeam = FootballTeam(
 fun FullTeamEntity.toTeamDetails(): FootballTeamDetails = FootballTeamDetails(
     team.id,
     team.name,
-    team.national,
+    team.country,
     "${venue.name} with capacity ${venue.capacity}", // TODO move to a separate class
     team.logo
 )
