@@ -104,7 +104,7 @@ private class SuccessRepository : FootballTeamRepository {
 
     override fun details(teamId: Int): Single<FootballTeamDetails> {
         return Single.fromCallable {
-            FootballTeamDetails(1, "FC Barcelona", false, "Mesque un club", "")
+            FootballTeamDetails(1, "FC Barcelona", "Spain", "Mesque un club", "")
         }
     }
 }

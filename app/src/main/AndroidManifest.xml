@@ -11,7 +11,8 @@
         android:theme="@style/Theme.FootballTeams">
         <activity
             android:name=".details.TeamDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TeamDetails"/>
         <activity
             android:name=".main.MainActivity"
             android:exported="true">

@@ -3,7 +3,7 @@ package ru.bykov.footballteams.models
 class FootballTeamDetails(
     val id: Int,
     val name: String,
-    val national: Boolean,
+    val country: String,
     val venue: String,
     val badgeUrl: String
 )
