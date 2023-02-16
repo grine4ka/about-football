@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import ru.bykov.footballteams.R
 import ru.bykov.footballteams.di.TeamDetailsInjection
 import ru.bykov.footballteams.extensions.toast
@@ -35,8 +36,16 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
 
     private lateinit var presenter: TeamDetailsContract.Presenter
 
+    private val appBarLayout: AppBarLayout by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.app_bar_layout)
+    }
+
     private val toolbar: Toolbar by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.toolbar)
+    }
+
+    private val toolbarTitle: TextView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.toolbar_title)
     }
 
     private val teamBadge: ImageView by lazy(LazyThreadSafetyMode.NONE) {
@@ -55,6 +64,16 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         findViewById(R.id.venue)
     }
 
+    private val appBarOffsetChangeListener = AppBarOffsetChangeListener(
+        onOffsetChanged = { _, offsetRange ->
+            teamBadge.alpha = 1 - offsetRange
+            national.alpha = 1 - offsetRange
+            titleViewAnimator.moveTitleView(offsetRange)
+        }
+    )
+
+    private val titleViewAnimator: TitleViewAnimator = TitleViewAnimator()
+
     // region Activity Callbacks
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +83,24 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+        appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
+        titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
 
         presenter = injection.presenter
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            titleViewAnimator.onWindowFocused(appBarOffsetChangeListener.currentOffset)
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         presenter.destroy()
+        titleViewAnimator.onViewsDestroyed()
+        appBarLayout.removeOnOffsetChangedListener(appBarOffsetChangeListener)
     }
     // endregion
 
@@ -84,6 +113,7 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         teamName.text = details.name
         national.text = details.country
         venue.text = details.venue
+        titleViewAnimator.onTitleTextChanged(appBarOffsetChangeListener.currentOffset)
     }
 
     override fun showError(message: String?) {
