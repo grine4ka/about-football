@@ -1,8 +1,8 @@
-package ru.bykov.footballteams.entity
+package ru.bykov.footballteams.network.model
 
 import com.google.gson.annotations.SerializedName
 
-class ErrorEntity(
+class ApiError(
     @SerializedName("bug")
     val bug: String,
     @SerializedName("report")

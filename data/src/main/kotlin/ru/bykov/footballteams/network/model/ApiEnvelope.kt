@@ -1,10 +1,10 @@
-package ru.bykov.footballteams.entity
+package ru.bykov.footballteams.network.model
 
 import com.google.gson.annotations.SerializedName
 
 class ApiEnvelope<T>(
     @SerializedName("errors")
-    val errors: List<ErrorEntity>,
+    val errors: List<ApiError>,
     @SerializedName("response")
     val response: T,
     @SerializedName("results")
