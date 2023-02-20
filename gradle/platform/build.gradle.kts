@@ -29,6 +29,7 @@ dependencies.constraints {
     api("androidx.constraintlayout:constraintlayout:2.1.1")
     api("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     api("com.google.android.material:material:1.4.0")
+    api("androidx.palette:palette:1.0.0")
 
     // Images
     api("com.github.bumptech.glide:glide:4.12.0")
