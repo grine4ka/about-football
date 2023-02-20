@@ -1,23 +1,23 @@
-package ru.bykov.footballteams.entity
+package ru.bykov.footballteams.network.model
 
 import com.google.gson.annotations.SerializedName
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
 
-class FullTeamEntity(
+class ApiFullTeam(
     @SerializedName("team")
-    val team: TeamEntity,
+    val team: ApiTeam,
     @SerializedName("venue")
-    val venue: VenueEntity
+    val venue: ApiVenue
 )
 
-fun FullTeamEntity.toTeam(): FootballTeam = FootballTeam(
+fun ApiFullTeam.toTeam(): FootballTeam = FootballTeam(
     team.id,
     team.name,
     team.logo
 )
 
-fun FullTeamEntity.toTeamDetails(): FootballTeamDetails = FootballTeamDetails(
+fun ApiFullTeam.toTeamDetails(): FootballTeamDetails = FootballTeamDetails(
     team.id,
     team.name,
     team.country,

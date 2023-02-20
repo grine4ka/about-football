@@ -1,8 +1,8 @@
-package ru.bykov.footballteams.entity
+package ru.bykov.footballteams.network.model
 
 import com.google.gson.annotations.SerializedName
 
-class TeamEntity(
+class ApiTeam(
     @SerializedName("code")
     val code: String,
     @SerializedName("country")

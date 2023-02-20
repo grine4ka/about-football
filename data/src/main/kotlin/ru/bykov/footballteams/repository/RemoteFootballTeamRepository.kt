@@ -1,12 +1,12 @@
 package ru.bykov.footballteams.repository
 
 import io.reactivex.Single
-import ru.bykov.footballteams.entity.toTeam
-import ru.bykov.footballteams.entity.toTeamDetails
 import ru.bykov.footballteams.extensions.retryExponential
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
 import ru.bykov.footballteams.network.TeamsApi
+import ru.bykov.footballteams.network.model.toTeam
+import ru.bykov.footballteams.network.model.toTeamDetails
 
 class RemoteFootballTeamRepository(
     private val api: TeamsApi,

@@ -6,12 +6,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import ru.bykov.footballteams.entity.ApiEnvelope
-import ru.bykov.footballteams.entity.FullTeamEntity
-import ru.bykov.footballteams.entity.TeamEntity
-import ru.bykov.footballteams.entity.VenueEntity
 import ru.bykov.footballteams.models.FootballTeamDetails
 import ru.bykov.footballteams.network.TeamsApi
+import ru.bykov.footballteams.network.model.ApiEnvelope
+import ru.bykov.footballteams.network.model.ApiFullTeam
+import ru.bykov.footballteams.network.model.ApiTeam
+import ru.bykov.footballteams.network.model.ApiVenue
 
 // TODO remove this test
 internal class FootballTeamRepositoryImplTest {
@@ -51,17 +51,17 @@ internal class FootballTeamRepositoryImplTest {
 }
 
 private class SuccessApi : TeamsApi {
-    override fun getTeams(leagueId: Int, year: String): Single<ApiEnvelope<List<FullTeamEntity>>> {
+    override fun getTeams(leagueId: Int, year: String): Single<ApiEnvelope<List<ApiFullTeam>>> {
         throw NotImplementedError("Doesn't need in this test")
     }
 
-    override fun getTeamDetails(id: Int): Single<ApiEnvelope<List<FullTeamEntity>>> {
+    override fun getTeamDetails(id: Int): Single<ApiEnvelope<List<ApiFullTeam>>> {
         return Single.fromCallable {
             ApiEnvelope(
                 emptyList(),
                 listOf(
-                    FullTeamEntity(
-                        TeamEntity(
+                    ApiFullTeam(
+                        ApiTeam(
                             id = 33,
                             name = "Manchester United",
                             code = "MUN",
@@ -70,7 +70,7 @@ private class SuccessApi : TeamsApi {
                             national = false,
                             logo = "https://example.com/football/teams/33.png"
                         ),
-                        VenueEntity(
+                        ApiVenue(
                             id = 556,
                             name = "Old Trafford",
                             address = "Sir Matt Busby Way",
