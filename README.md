@@ -10,7 +10,8 @@ For these purposes I used the best game in the world - Football.
 - Architecture:
   - _Clean Architecture_
   - _MVP_
-- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) for communicating with REST APIs
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) for communicating with REST APIs.
+- [Room](https://developer.android.com/training/data-storage/room) for a fluent database access.
 - **No DI frameworks**
 - [Glide](https://github.com/bumptech/glide) for downloading and processing images
 - Gradle

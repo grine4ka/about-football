@@ -1,5 +1,5 @@
 plugins {
-    id("com.bykov.android-library")
+    id("com.bykov.android-library-room")
 }
 
 android {
