@@ -18,12 +18,19 @@ dependencies.constraints {
     api("io.reactivex.rxjava2:rxandroid:2.1.1")
 
     // Network
-    api("com.squareup.retrofit2:retrofit:2.9.0")
-    api("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
-    api("com.squareup.retrofit2:converter-gson:2.9.0")
+    val retrofitVersion = "2.9.0"
+    api("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    api("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+    api("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     api("com.squareup.okhttp3:okhttp")
     api("com.squareup.okhttp3:logging-interceptor")
     api("com.google.code.gson:gson:2.10")
+
+    // DB
+    val roomVersion = "2.5.0"
+    api("androidx.room:room-runtime:$roomVersion")
+    api("androidx.room:room-rxjava2:$roomVersion")
+    api("androidx.room:room-compiler:$roomVersion")
 
     // UI
     api("androidx.constraintlayout:constraintlayout:2.1.1")
