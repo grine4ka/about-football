@@ -15,8 +15,10 @@ import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import ru.bykov.footballteams.FooteaApplication
 import ru.bykov.footballteams.R
-import ru.bykov.footballteams.di.TeamDetailsInjection
+import ru.bykov.footballteams.di.AppContainer
+import ru.bykov.footballteams.di.TeamDetailsContainer
 import ru.bykov.footballteams.extensions.getColorFromAttr
 import ru.bykov.footballteams.extensions.toast
 import ru.bykov.footballteams.models.FootballTeamDetails
@@ -39,11 +41,8 @@ fun Activity.showTeamDetails(teamId: Int, teamName: String) {
 
 class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
 
-    private val injection: TeamDetailsInjection by lazy(LazyThreadSafetyMode.NONE) {
-        TeamDetailsInjection(this)
-    }
-
     private lateinit var presenter: TeamDetailsContract.Presenter
+    private lateinit var appContainer: AppContainer
 
     private val appBarLayout: AppBarLayout by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.app_bar_layout)
@@ -91,6 +90,11 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_details)
+
+        appContainer = (application as FooteaApplication).appContainer
+        appContainer.teamDetailsContainer = TeamDetailsContainer(appContainer.repository)
+        presenter = appContainer.teamDetailsContainer!!.presenter(this)
+
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbar.setNavigationOnClickListener {
@@ -99,7 +103,6 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
         titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
 
-        presenter = injection.presenter
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
     }
 
@@ -110,10 +113,11 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         }
     }
     override fun onDestroy() {
-        super.onDestroy()
         presenter.destroy()
         titleViewAnimator.onViewsDestroyed()
         appBarLayout.removeOnOffsetChangedListener(appBarOffsetChangeListener)
+        appContainer.teamDetailsContainer = null
+        super.onDestroy()
     }
     // endregion
 

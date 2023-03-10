@@ -12,7 +12,7 @@ For these purposes I used the best game in the world - Football.
   - _MVP_
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) for communicating with REST APIs.
 - [Room](https://developer.android.com/training/data-storage/room) for a fluent database access.
-- **No DI frameworks**
+- [Manual DI](https://developer.android.com/training/dependency-injection/manual)
 - [Glide](https://github.com/bumptech/glide) for downloading and processing images
 - Gradle
   - [Understanding Gradle](https://www.youtube.com/playlist?list=PLWQK2ZdV4Yl2k2OmC_gsjDpdIBTN0qqkE) by Jendrik Johannes
