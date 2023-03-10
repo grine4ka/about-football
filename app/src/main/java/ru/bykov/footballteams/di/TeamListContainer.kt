@@ -1,24 +1,28 @@
 package ru.bykov.footballteams.di
 
+import android.content.Context
 import ru.bykov.footballteams.main.MainActivity
 import ru.bykov.footballteams.main.MainContract
 import ru.bykov.footballteams.main.MainPresenter
 import ru.bykov.footballteams.main.TeamListAdapter
+import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.ui.DisplayableItem
 import ru.bykov.footballteams.ui.FootballTeamItem
 import ru.bykov.footballteams.ui.FootballTeamsViewHolderFactory
 import ru.bykov.footballteams.ui.OnTeamItemClickListener
 
-class TeamListInjection(
-    activity: MainActivity,
-    onTeamItemClickListener: OnTeamItemClickListener
+class TeamListContainer(
+    private val repository: FootballTeamRepository,
 ) {
 
     private val items: MutableList<DisplayableItem> = mutableListOf()
 
-    private val holderFactory: FootballTeamsViewHolderFactory by lazy(LazyThreadSafetyMode.NONE) {
-        FootballTeamsViewHolderFactory.Impl(
-            context = activity,
+    private fun holderFactory(
+        context: Context,
+        onTeamItemClickListener: OnTeamItemClickListener
+    ): FootballTeamsViewHolderFactory {
+        return FootballTeamsViewHolderFactory.Impl(
+            context = context,
             itemClickListener = {
                 val footballTeamItem = items[it] as FootballTeamItem
                 onTeamItemClickListener.onTeamItemClicked(footballTeamItem.footballTeam)
@@ -26,11 +30,14 @@ class TeamListInjection(
         )
     }
 
-    val presenter: MainContract.Presenter by lazy(LazyThreadSafetyMode.NONE) {
-        MainPresenter(Injection.repository, activity)
+    fun presenter(view: MainContract.View): MainContract.Presenter {
+        return MainPresenter(repository, view)
     }
 
-    val adapter: TeamListAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        TeamListAdapter(items, holderFactory)
+    fun adapter(
+        activity: MainActivity,
+        onTeamItemClickListener: OnTeamItemClickListener,
+    ): TeamListAdapter {
+        return TeamListAdapter(items, holderFactory(activity, onTeamItemClickListener))
     }
 }
