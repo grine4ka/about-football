@@ -3,6 +3,8 @@ package ru.bykov.footballteams.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.bykov.footballteams.models.FootballTeam
+import ru.bykov.footballteams.models.FootballTeamDetails
 
 /**
  * Defines a team
@@ -19,4 +21,18 @@ data class TeamEntity(
     val venueName: String,
     @ColumnInfo(name = "venue_capacity")
     val venueCapacity: String
+)
+
+fun TeamEntity.toTeam(): FootballTeam = FootballTeam(
+    id,
+    name,
+    logo
+)
+
+fun TeamEntity.toTeamDetails(): FootballTeamDetails = FootballTeamDetails(
+    id,
+    name,
+    country,
+    "$venueName with capacity $venueCapacity",
+    logo
 )
