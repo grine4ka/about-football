@@ -30,7 +30,7 @@ internal class RemoteFootballTeamRepositoryTest {
         fun setup() {
             repository = RemoteFootballTeamRepository(
                 SuccessApi(),
-//                SuccessDao()
+                SuccessDao()
             )
         }
 

@@ -10,9 +10,11 @@ import ru.bykov.footballteams.ui.DisplayableItem
 import ru.bykov.footballteams.ui.FootballTeamItem
 import ru.bykov.footballteams.ui.FootballTeamsViewHolderFactory
 import ru.bykov.footballteams.ui.OnTeamItemClickListener
+import ru.bykov.footballteams.usecase.GetTeams
 
 class TeamListContainer(
-    private val repository: FootballTeamRepository,
+    private val localRepository: FootballTeamRepository,
+    private val remoteRepository: FootballTeamRepository,
 ) {
 
     private val items: MutableList<DisplayableItem> = mutableListOf()
@@ -31,7 +33,13 @@ class TeamListContainer(
     }
 
     fun presenter(view: MainContract.View): MainContract.Presenter {
-        return MainPresenter(repository, view)
+        return MainPresenter(
+            GetTeams(
+                localRepository,
+                remoteRepository
+            ),
+            view
+        )
     }
 
     fun adapter(

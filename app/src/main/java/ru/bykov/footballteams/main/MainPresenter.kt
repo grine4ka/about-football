@@ -3,11 +3,12 @@ package ru.bykov.footballteams.main
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import ru.bykov.footballteams.extensions.async
-import ru.bykov.footballteams.repository.FootballTeamRepository
+import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.ui.FootballTeamItem
+import ru.bykov.footballteams.usecase.UseCase
 
 class MainPresenter(
-    private val repository: FootballTeamRepository,
+    private val getTeams: UseCase<Single<List<FootballTeam>>, Boolean>,
     private val view: MainContract.View,
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 ) : MainContract.Presenter {
@@ -43,7 +44,7 @@ class MainPresenter(
     }
 
     private fun loadFootballTeams(forceUpdate: Boolean = false): Single<List<FootballTeamItem>> {
-        return repository.teams(forceUpdate)
+        return getTeams(forceUpdate)
             .map { teams -> teams.map { FootballTeamItem(it) } }
             .async()
     }

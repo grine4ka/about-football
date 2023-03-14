@@ -41,7 +41,10 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         setContentView(R.layout.activity_main)
 
         appContainer = (application as FooteaApplication).appContainer
-        appContainer.teamListContainer = TeamListContainer(appContainer.repository)
+        appContainer.teamListContainer = TeamListContainer(
+            appContainer.localRepository,
+            appContainer.remoteRepository,
+        )
         presenter = appContainer.teamListContainer!!.presenter(this)
         adapter = appContainer.teamListContainer!!.adapter(this, this)
 

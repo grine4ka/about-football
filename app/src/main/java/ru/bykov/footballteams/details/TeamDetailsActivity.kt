@@ -92,7 +92,10 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
         setContentView(R.layout.activity_team_details)
 
         appContainer = (application as FooteaApplication).appContainer
-        appContainer.teamDetailsContainer = TeamDetailsContainer(appContainer.repository)
+        appContainer.teamDetailsContainer = TeamDetailsContainer(
+            appContainer.localRepository,
+            appContainer.remoteRepository
+        )
         presenter = appContainer.teamDetailsContainer!!.presenter(this)
 
         setSupportActionBar(toolbar)
