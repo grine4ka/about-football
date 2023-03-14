@@ -1,11 +1,14 @@
 package ru.bykov.footballteams.repository
 
 import io.kotest.matchers.string.shouldStartWith
+import io.reactivex.Maybe
 import io.reactivex.Single
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import ru.bykov.footballteams.database.TeamsDao
+import ru.bykov.footballteams.database.model.TeamEntity
 import ru.bykov.footballteams.models.FootballTeamDetails
 import ru.bykov.footballteams.network.TeamsApi
 import ru.bykov.footballteams.network.model.ApiEnvelope
@@ -13,8 +16,8 @@ import ru.bykov.footballteams.network.model.ApiFullTeam
 import ru.bykov.footballteams.network.model.ApiTeam
 import ru.bykov.footballteams.network.model.ApiVenue
 
-// TODO remove this test
-internal class FootballTeamRepositoryImplTest {
+// TODO refactor this test
+internal class RemoteFootballTeamRepositoryTest {
 
     @Nested
     @DisplayName("Given details loaded successfully")
@@ -25,7 +28,10 @@ internal class FootballTeamRepositoryImplTest {
 
         @BeforeEach
         fun setup() {
-            repository = RemoteFootballTeamRepository(SuccessApi())
+            repository = RemoteFootballTeamRepository(
+                SuccessApi(),
+//                SuccessDao()
+            )
         }
 
         @Nested
@@ -50,6 +56,20 @@ internal class FootballTeamRepositoryImplTest {
     }
 }
 
+private class SuccessDao : TeamsDao {
+    override fun getAll(): Single<List<TeamEntity>> {
+        throw NotImplementedError("Doesn't need in this test")
+    }
+
+    override fun getById(teamId: Int): Maybe<TeamEntity> {
+        throw NotImplementedError("Doesn't need in this test")
+    }
+
+    override fun insertOrIgnoreTeams(teams: List<TeamEntity>) {
+        // no-op. successfully inserted into db
+    }
+
+}
 private class SuccessApi : TeamsApi {
     override fun getTeams(leagueId: Int, year: String): Single<ApiEnvelope<List<ApiFullTeam>>> {
         throw NotImplementedError("Doesn't need in this test")
