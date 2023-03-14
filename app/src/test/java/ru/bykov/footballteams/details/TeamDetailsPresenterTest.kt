@@ -1,3 +1,5 @@
+@file:Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+
 package ru.bykov.footballteams.details
 
 import io.kotest.matchers.shouldBe
@@ -5,9 +7,8 @@ import io.reactivex.Single
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.extension.ExtendWith
 import ru.bykov.footballteams.RxSchedulersOverrideRule
-import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
-import ru.bykov.footballteams.repository.FootballTeamRepository
+import ru.bykov.footballteams.usecase.UseCase
 
 @ExtendWith(RxSchedulersOverrideRule::class)
 internal class TeamDetailsPresenterTest {
@@ -23,12 +24,12 @@ internal class TeamDetailsPresenterTest {
     @DisplayName("Given details loaded successfully")
     inner class DetailsLoadedSuccessfully {
 
-        private val repository: FootballTeamRepository = SuccessRepository()
+        private val getTeamById = SuccessGetTeamById()
         private lateinit var presenter: TeamDetailsContract.Presenter
 
         @BeforeEach
         fun setup() {
-            presenter = TeamDetailsPresenter(repository, view)
+            presenter = TeamDetailsPresenter(getTeamById, view)
         }
 
         @Nested
@@ -52,12 +53,12 @@ internal class TeamDetailsPresenterTest {
     @DisplayName("Given details failed to load")
     inner class DetailsLoadFailed {
 
-        private val repository: FootballTeamRepository = FailedRepository()
+        private val getTeamById = FailedGetTeamById()
         private lateinit var presenter: TeamDetailsContract.Presenter
 
         @BeforeEach
         fun setup() {
-            presenter = TeamDetailsPresenter(repository, view)
+            presenter = TeamDetailsPresenter(getTeamById, view)
         }
 
         @Nested
@@ -94,28 +95,16 @@ private class MockView : TeamDetailsContract.View {
 }
 
 
-private class SuccessRepository : FootballTeamRepository {
+private class SuccessGetTeamById : UseCase<Single<FootballTeamDetails>, Int> {
 
-    override fun teams(forceUpdate: Boolean): Single<List<FootballTeam>> {
-        return Single.fromCallable {
-            listOf(FootballTeam(1, "FC Barcelona", ""))
-        }
-    }
-
-    override fun details(teamId: Int): Single<FootballTeamDetails> {
-        return Single.fromCallable {
-            FootballTeamDetails(1, "FC Barcelona", "Spain", "Mesque un club", "")
-        }
+    override fun invoke(teamId: Int): Single<FootballTeamDetails> {
+        return Single.just(FootballTeamDetails(1, "FC Barcelona", "Spain", "Mesque un club", ""))
     }
 }
 
-private class FailedRepository : FootballTeamRepository {
+private class FailedGetTeamById : UseCase<Single<FootballTeamDetails>, Int> {
 
-    override fun teams(forceUpdate: Boolean): Single<List<FootballTeam>> {
-        return Single.error(Throwable("Data not loaded"))
-    }
-
-    override fun details(teamId: Int): Single<FootballTeamDetails> {
+    override fun invoke(teamId: Int): Single<FootballTeamDetails> {
         return Single.error(Throwable("Data not loaded"))
     }
 }
