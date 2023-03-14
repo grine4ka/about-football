@@ -9,9 +9,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.bykov.footballteams.database.FooteaDatabase
 import ru.bykov.footballteams.network.TeamsApi
 import ru.bykov.footballteams.repository.FootballTeamRepository
-import ru.bykov.footballteams.repository.InMemoryCachedFootballTeamRepository
+import ru.bykov.footballteams.repository.LocalFootballTeamRepository
 import ru.bykov.footballteams.repository.RemoteFootballTeamRepository
 
 private const val BASE_URL = "https://v3.football.api-sports.io"
@@ -64,9 +65,14 @@ class DataContainer(private val context: Context) {
     }
 
 
-    fun repository(apiKey: String): FootballTeamRepository {
-        return InMemoryCachedFootballTeamRepository(
-            RemoteFootballTeamRepository(teamsApi(apiKey))
+    fun remoteRepository(apiKey: String): FootballTeamRepository {
+        return RemoteFootballTeamRepository(
+            teamsApi(apiKey),
+            FooteaDatabase.getInstance(context).teamsDao()
         )
+    }
+
+    fun localRepository(): FootballTeamRepository {
+        return LocalFootballTeamRepository(FooteaDatabase.getInstance(context).teamsDao())
     }
 }

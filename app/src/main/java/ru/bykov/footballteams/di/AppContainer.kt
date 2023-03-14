@@ -10,8 +10,12 @@ class AppContainer(context: Context) {
     private val secrets: Secrets = Secrets()
     private val dataContainer: DataContainer = DataContainer(context)
 
-    val repository: FootballTeamRepository by lazy(LazyThreadSafetyMode.NONE) {
-        dataContainer.repository(secrets.getApiFootballKey(BuildConfig.APPLICATION_ID))
+    val remoteRepository: FootballTeamRepository by lazy(LazyThreadSafetyMode.NONE) {
+        dataContainer.remoteRepository(secrets.getApiFootballKey(BuildConfig.APPLICATION_ID))
+    }
+
+    val localRepository: FootballTeamRepository by lazy(LazyThreadSafetyMode.NONE) {
+        dataContainer.localRepository()
     }
 
     var teamDetailsContainer: TeamDetailsContainer? = null

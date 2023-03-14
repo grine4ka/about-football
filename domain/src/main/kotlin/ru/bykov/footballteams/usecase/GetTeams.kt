@@ -4,6 +4,7 @@ import io.reactivex.Single
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.repository.FootballTeamRepository
 
+// TODO add pref to get teams from remote only once a day
 class GetTeams(
     private val localRepository: FootballTeamRepository,
     private val remoteRepository: FootballTeamRepository
