@@ -16,14 +16,6 @@ class GetTeams(
             remoteRepository.teams()
         } else {
             localRepository.teams()
-                .flatMap { localTeams ->
-                    if (localTeams.isEmpty()) {
-                        remoteRepository.teams()
-                    } else {
-                        Single.just(localTeams)
-                    }
-                }
         }
     }
-
 }

@@ -6,15 +6,11 @@ import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.usecase.GetTeamById
 
 class TeamDetailsContainer(
-    private val localRepository: FootballTeamRepository,
-    private val remoteRepository: FootballTeamRepository,
+    private val repository: FootballTeamRepository,
 ) {
     fun presenter(teamDetailsView: TeamDetailsContract.View): TeamDetailsPresenter {
         return TeamDetailsPresenter(
-            GetTeamById(
-                localRepository,
-                remoteRepository
-            ),
+            GetTeamById(repository),
             teamDetailsView
         )
     }
