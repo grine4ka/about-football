@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.bykov.footballteams.FooteaApplication
 import ru.bykov.footballteams.R
 import ru.bykov.footballteams.details.showTeamDetails
@@ -23,10 +22,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         findViewById(R.id.teams_recycler)
     }
 
-    private val swipeRefreshLayout: SwipeRefreshLayout by lazy(LazyThreadSafetyMode.NONE) {
-        findViewById(R.id.swipe_refresh_layout)
-    }
-
     private val progressBar: ProgressBar by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.progress_bar)
     }
@@ -42,6 +37,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
 
         appContainer = (application as FooteaApplication).appContainer
         appContainer.teamListContainer = TeamListContainer(
+            appContainer.preferencesRepository,
             appContainer.localRepository,
             appContainer.remoteRepository,
         )
@@ -49,10 +45,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
         adapter = appContainer.teamListContainer!!.adapter(this, this)
 
         teamsRecycler.adapter = adapter
-
-        swipeRefreshLayout.setOnRefreshListener {
-            presenter.refreshTeams()
-        }
 
         presenter.loadTeams()
     }
@@ -70,7 +62,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
     }
 
     override fun showContent(teams: List<FootballTeamItem>) {
-        swipeRefreshLayout.isRefreshing = false
         progressBar.gone()
         teamsRecycler.show()
         adapter.setItems(teams)
@@ -78,7 +69,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
 
     override fun showError() {
         progressBar.gone()
-        swipeRefreshLayout.isRefreshing = false
         toast(getString(R.string.default_error))
     }
     // endregion
