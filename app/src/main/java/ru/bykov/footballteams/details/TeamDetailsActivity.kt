@@ -93,8 +93,7 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
 
         appContainer = (application as FooteaApplication).appContainer
         appContainer.teamDetailsContainer = TeamDetailsContainer(
-            appContainer.localRepository,
-            appContainer.remoteRepository
+            appContainer.localRepository
         )
         presenter = appContainer.teamDetailsContainer!!.presenter(this)
 

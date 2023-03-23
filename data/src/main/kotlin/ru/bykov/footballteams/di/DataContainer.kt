@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.bykov.footballteams.database.FooteaDatabase
 import ru.bykov.footballteams.network.TeamsApi
 import ru.bykov.footballteams.repository.FootballTeamRepository
-import ru.bykov.footballteams.repository.LocalFootballTeamRepository
+import ru.bykov.footballteams.repository.LocalFirstFootballTeamRepository
 import ru.bykov.footballteams.repository.RemoteFootballTeamRepository
 
 private const val BASE_URL = "https://v3.football.api-sports.io"
@@ -72,7 +72,10 @@ class DataContainer(private val context: Context) {
         )
     }
 
-    fun localRepository(): FootballTeamRepository {
-        return LocalFootballTeamRepository(FooteaDatabase.getInstance(context).teamsDao())
+    fun localRepository(remote: FootballTeamRepository): FootballTeamRepository {
+        return LocalFirstFootballTeamRepository(
+            FooteaDatabase.getInstance(context).teamsDao(),
+            remote
+        )
     }
 }

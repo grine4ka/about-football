@@ -15,7 +15,7 @@ class AppContainer(context: Context) {
     }
 
     val localRepository: FootballTeamRepository by lazy(LazyThreadSafetyMode.NONE) {
-        dataContainer.localRepository()
+        dataContainer.localRepository(remoteRepository)
     }
 
     var teamDetailsContainer: TeamDetailsContainer? = null

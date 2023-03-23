@@ -6,14 +6,4 @@ data class FootballTeamDetails(
     val country: String,
     val venue: String,
     val badgeUrl: String
-) {
-
-    companion object {
-
-        private const val EMPTY_ID = -1
-
-        val EMPTY: FootballTeamDetails = FootballTeamDetails(
-            EMPTY_ID, "", "", "", ""
-        )
-    }
-}
+)

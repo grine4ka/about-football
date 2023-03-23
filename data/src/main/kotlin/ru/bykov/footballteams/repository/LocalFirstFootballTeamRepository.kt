@@ -8,16 +8,23 @@ import ru.bykov.footballteams.database.model.toTeamDetails
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.models.FootballTeamDetails
 
-class LocalFootballTeamRepository(
-    private val teamsDao: TeamsDao
+class LocalFirstFootballTeamRepository(
+    private val dao: TeamsDao,
+    private val remote: FootballTeamRepository,
 ) : FootballTeamRepository {
 
     override fun teams(forceUpdate: Boolean): Single<List<FootballTeam>> {
-        return teamsDao.getAll().map { entities -> entities.map(TeamEntity::toTeam) }
+        return dao.getAll().flatMap { teams ->
+            if (teams.isEmpty()) {
+                remote.teams()
+            } else {
+                Single.just(teams.map(TeamEntity::toTeam))
+            }
+        }
     }
 
     override fun details(teamId: Int): Single<FootballTeamDetails> {
-        return teamsDao.getById(teamId).map { it.toTeamDetails() }
-            .toSingle(FootballTeamDetails.EMPTY)
+        return dao.getById(teamId).map(TeamEntity::toTeamDetails)
+            .switchIfEmpty(remote.details(teamId))
     }
 }
