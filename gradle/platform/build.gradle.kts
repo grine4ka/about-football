@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api(platform("org.junit:junit-bom:5.7.2")) { (this as ExternalModuleDependency).version { reject("[5.8.0,)") } } // Do not Upgrade to 5.8: https://github.com/gradle/gradle/issues/18627
+    api(platform("org.junit:junit-bom:5.8.2"))
     api(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 }
 
@@ -32,6 +32,9 @@ dependencies.constraints {
     api("androidx.room:room-rxjava2:$roomVersion")
     api("androidx.room:room-compiler:$roomVersion")
 
+    // Datetime
+    api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
     // UI
     api("androidx.constraintlayout:constraintlayout:2.1.1")
     api("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
@@ -45,6 +48,7 @@ dependencies.constraints {
     // (Required) Writing and executing Unit Tests on the JUnit Platform
     api("io.kotest:kotest-runner-junit5:4.6.3")
     api("io.kotest:kotest-assertions-core:4.6.3")
+    api("io.mockk:mockk:1.13.4")
 
     // UI tests
     api("androidx.test.ext:junit:1.1.3")

@@ -16,4 +16,7 @@ dependencies {
     implementation("com.squareup.retrofit2:adapter-rxjava2")
     implementation("com.squareup.retrofit2:converter-gson")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // Mocks
+    testImplementation("io.mockk:mockk")
 }

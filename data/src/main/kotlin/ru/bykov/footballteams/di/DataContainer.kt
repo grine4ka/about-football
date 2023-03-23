@@ -14,8 +14,12 @@ import ru.bykov.footballteams.network.TeamsApi
 import ru.bykov.footballteams.repository.FootballTeamRepository
 import ru.bykov.footballteams.repository.LocalFirstFootballTeamRepository
 import ru.bykov.footballteams.repository.RemoteFootballTeamRepository
+import ru.bykov.footballteams.repository.StringPreferencesRepository
+import ru.bykov.footballteams.repository.StringSharedPreferencesRepository
 
 private const val BASE_URL = "https://v3.football.api-sports.io"
+
+private const val STRING_PREFS_NAME = "rx_string_prefs"
 
 class DataContainer(private val context: Context) {
 
@@ -64,6 +68,11 @@ class DataContainer(private val context: Context) {
         return retrofit(apiKey).create(TeamsApi::class.java)
     }
 
+    fun stringPreferencesRepository(): StringPreferencesRepository {
+        return StringSharedPreferencesRepository(
+            context.getSharedPreferences(STRING_PREFS_NAME, Context.MODE_PRIVATE)
+        )
+    }
 
     fun remoteRepository(apiKey: String): FootballTeamRepository {
         return RemoteFootballTeamRepository(

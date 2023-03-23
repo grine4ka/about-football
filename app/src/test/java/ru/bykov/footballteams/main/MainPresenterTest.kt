@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import ru.bykov.footballteams.RxSchedulersOverrideRule
 import ru.bykov.footballteams.models.FootballTeam
 import ru.bykov.footballteams.ui.FootballTeamItem
-import ru.bykov.footballteams.usecase.UseCase
+import ru.bykov.footballteams.usecase.SimpleUseCase
 
 @ExtendWith(RxSchedulersOverrideRule::class)
 internal class MainPresenterTest {
@@ -98,16 +98,16 @@ private class MockView : MainContract.View {
 
 }
 
-private class SuccessGetTeams : UseCase<Single<List<FootballTeam>>, Boolean> {
+private class SuccessGetTeams : SimpleUseCase<Single<List<FootballTeam>>> {
 
-    override fun invoke(forceUpdate: Boolean): Single<List<FootballTeam>> {
+    override fun invoke(): Single<List<FootballTeam>> {
         return Single.just(listOf(FootballTeam(1, "FC Barcelona", "")))
     }
 }
 
-private class FailedGetTeams : UseCase<Single<List<FootballTeam>>, Boolean> {
+private class FailedGetTeams : SimpleUseCase<Single<List<FootballTeam>>> {
 
-    override fun invoke(forceUpdate: Boolean): Single<List<FootballTeam>> {
+    override fun invoke(): Single<List<FootballTeam>> {
         return Single.error(Throwable("Data not loaded"))
     }
 }
