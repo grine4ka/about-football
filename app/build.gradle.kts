@@ -2,6 +2,10 @@ plugins {
     id("com.bykov.android-application")
 }
 
+android {
+    namespace = "ru.bykov.footballteams"
+}
+
 dependencies {
 
     implementation(project(":domain"))

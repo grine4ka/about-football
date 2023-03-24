@@ -1,10 +1,16 @@
-import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.withType
+import com.android.build.gradle.BaseExtension
 
 plugins {
-    id("com.android.base")
-    id("kotlin-android")
     id("com.bykov.base")
+    id("com.android.base")
+    id("org.jetbrains.kotlin.android")
+}
+
+extensions.configure<BaseExtension>("android") {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }
 
 // Configure details for *all* test executions direclty on 'Test' task
