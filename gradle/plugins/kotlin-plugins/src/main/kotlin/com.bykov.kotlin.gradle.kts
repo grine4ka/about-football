@@ -11,9 +11,7 @@ java {
 }
 
 kotlin {
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(javaLanguageVersion)
-    }
+    jvmToolchain(11)
 }
 
 tasks.withType<JavaCompile>().configureEach {
