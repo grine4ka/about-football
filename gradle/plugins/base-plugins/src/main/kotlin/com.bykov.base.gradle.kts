@@ -3,7 +3,7 @@ plugins {
 }
 
 // Set the group (some components will be published)
-group = "com.bykov.aboutfootball"
+group = "com.bykov.footea"
 
 // Set the version from 'version.txt'
 version = providers.fileContents(

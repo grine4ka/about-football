@@ -11,7 +11,7 @@ ksp {
 
 // Configure room dependencies
 dependencies {
-    ksp(platform("com.bykov.aboutfootball:platform"))
+    ksp(platform("com.bykov.footea:platform"))
 
     // Room
     implementation("androidx.room:room-runtime")

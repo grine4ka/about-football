@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.bykov.footballteams"
+    namespace = "com.bykov.footea"
 }
 
 dependencies {

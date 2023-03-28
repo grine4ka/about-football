@@ -14,7 +14,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "ru.bykov.footballteams"
+        applicationId = "com.bykov.footea"
         minSdk = 26
         targetSdk = 33
         versionCode = versionInt
@@ -56,8 +56,8 @@ android {
 dependencies {
     // Can't declare dependency from the platform in com.bykov.android convention plugin
     // cause com.android.base doesn't support it
-    implementation(platform("com.bykov.aboutfootball:platform"))
-    androidTestImplementation(platform("com.bykov.aboutfootball:platform"))
+    implementation(platform("com.bykov.footea:platform"))
+    androidTestImplementation(platform("com.bykov.footea:platform"))
 
     // (Required) Writing and executing Unit Tests on the JUnit Platform
     testImplementation("io.kotest:kotest-runner-junit5")

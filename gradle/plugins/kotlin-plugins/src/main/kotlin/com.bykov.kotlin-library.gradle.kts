@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    implementation(platform("com.bykov.aboutfootball:platform"))
+    implementation(platform("com.bykov.footea:platform"))
 }
