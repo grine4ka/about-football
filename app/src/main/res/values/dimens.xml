@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- HalfFieldDrawable -->
+    <dimen name="field_line_width">2dp</dimen>
+    <dimen name="field_line_padding">8dp</dimen>
+    <dimen name="field_inner_goal_width">32dp</dimen>
+    <dimen name="field_inner_goal_height">24dp</dimen>
+    <dimen name="field_goal_width">104dp</dimen>
+    <dimen name="field_goal_height">64dp</dimen>
+    <dimen name="field_corner_size">12dp</dimen>
+    <dimen name="field_center_circle_size">48dp</dimen>
+    <dimen name="field_center_inner_circle_size">4dp</dimen>
+</resources>
