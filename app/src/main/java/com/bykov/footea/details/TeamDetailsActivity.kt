@@ -39,7 +39,7 @@ fun Activity.showTeamDetails(teamId: Int, teamName: String) {
     )
 }
 
-class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
+class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), TeamDetailsContract.View {
 
     private lateinit var presenter: TeamDetailsContract.Presenter
     private lateinit var appContainer: AppContainer
@@ -89,8 +89,6 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsContract.View {
     // region Activity Callbacks
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_team_details)
-
         appContainer = (application as FooteaApplication).appContainer
         appContainer.teamDetailsContainer = TeamDetailsContainer(
             appContainer.localRepository
