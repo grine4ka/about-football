@@ -16,7 +16,7 @@ import com.bykov.footea.models.FootballTeam
 import com.bykov.footea.ui.FootballTeamItem
 import com.bykov.footea.ui.OnTeamItemClickListener
 
-class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main), MainContract.View, OnTeamItemClickListener {
 
     private val teamsRecycler: RecyclerView by lazy(LazyThreadSafetyMode.NONE) {
         findViewById(R.id.teams_recycler)
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnTeamItemClickList
     // region Activity Callbacks
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         appContainer = (application as FooteaApplication).appContainer
         appContainer.teamListContainer = TeamListContainer(
