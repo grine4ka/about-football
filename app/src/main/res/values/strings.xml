@@ -3,5 +3,6 @@
     <string name="default_error">Error loading football teams!</string>
     <string name="badge_content_description">Team badge</string>
     <string name="national_label">National</string>
-    <string name="venue_label">Venue</string>
+    <string name="venue_label">Stadium</string>
+    <string name="lineup_label">Starting XI</string>
 </resources>

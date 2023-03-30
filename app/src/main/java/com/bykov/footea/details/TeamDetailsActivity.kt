@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +22,7 @@ import com.bykov.footea.extensions.getColorFromAttr
 import com.bykov.footea.extensions.toast
 import com.bykov.footea.models.FootballTeamDetails
 import com.bykov.footea.ui.PaletteRequestListener
+import com.bykov.footea.ui.widgets.HalfFieldDrawable
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 
@@ -76,6 +78,10 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
         findViewById(R.id.venue)
     }
 
+    private val lineupContent: View by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.lineup_card_content)
+    }
+
     private val appBarOffsetChangeListener = AppBarOffsetChangeListener(
         onOffsetChanged = { _, offsetRange ->
             teamBadge.alpha = 1 - offsetRange
@@ -102,6 +108,7 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
         }
         appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
         titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
+        lineupContent.background = HalfFieldDrawable(this)
 
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
     }
