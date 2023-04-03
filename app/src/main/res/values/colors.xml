@@ -9,7 +9,4 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="white_12">#fafafa</color>
-
-    <!-- HalfFieldDrawable -->
-    <color name="field_line">#808080</color>
 </resources>

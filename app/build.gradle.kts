@@ -8,8 +8,9 @@ android {
 
 dependencies {
 
-    implementation(project(":domain"))
-    implementation(project(":data"))
+    implementation("com.bykov.footea:domain")
+    implementation("com.bykov.footea:data")
+    implementation("com.bykov.footea:teamlineupview")
 
     // Base
     implementation("androidx.core:core-ktx")
