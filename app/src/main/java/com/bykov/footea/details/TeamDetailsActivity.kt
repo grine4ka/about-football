@@ -22,7 +22,6 @@ import com.bykov.footea.extensions.getColorFromAttr
 import com.bykov.footea.extensions.toast
 import com.bykov.footea.models.FootballTeamDetails
 import com.bykov.footea.ui.PaletteRequestListener
-import com.bykov.footea.ui.widgets.HalfFieldDrawable
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 
@@ -108,7 +107,7 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
         }
         appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
         titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
-        lineupContent.background = HalfFieldDrawable(this)
+        lineupContent.background = com.bykov.footea.teamlineupview.HalfFieldDrawable(this)
 
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
     }

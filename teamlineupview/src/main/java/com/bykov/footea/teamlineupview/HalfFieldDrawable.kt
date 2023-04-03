@@ -1,4 +1,4 @@
-package com.bykov.footea.ui.widgets
+package com.bykov.footea.teamlineupview
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,7 +8,6 @@ import android.graphics.PixelFormat
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import androidx.core.content.res.ResourcesCompat
-import com.bykov.footea.R
 
 /**
  * Draws half of the field.
