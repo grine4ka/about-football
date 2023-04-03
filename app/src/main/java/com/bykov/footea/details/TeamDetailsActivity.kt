@@ -21,6 +21,9 @@ import com.bykov.footea.di.TeamDetailsContainer
 import com.bykov.footea.extensions.getColorFromAttr
 import com.bykov.footea.extensions.toast
 import com.bykov.footea.models.FootballTeamDetails
+import com.bykov.footea.teamlineupview.HalfFieldDrawable
+import com.bykov.footea.teamlineupview.PlayerAvatarNameView
+import com.bykov.footea.teamlineupview.model.Player
 import com.bykov.footea.ui.PaletteRequestListener
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -107,7 +110,16 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
         }
         appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
         titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
-        lineupContent.background = com.bykov.footea.teamlineupview.HalfFieldDrawable(this)
+        // TODO refactor this in #
+        lineupContent.background = HalfFieldDrawable(this)
+        lineupContent.findViewById<PlayerAvatarNameView>(R.id.player_1).bind(
+            Player(
+                "Lionel Messi",
+                "https://www.thesportsdb.com/images/media/player/thumb/uvuyqx1468874387.jpg",
+                10,
+                "Forward"
+            )
+        )
 
         presenter.loadTeamDetails(intent.getIntExtra(EXTRA_TEAM_ID, NO_TEAM_ID))
     }
