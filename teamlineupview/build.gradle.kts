@@ -18,4 +18,8 @@ dependencies {
 
     // Base
     implementation("androidx.core:core-ktx")
+
+    // Images
+    implementation("com.github.bumptech.glide:glide")
+    ksp("com.github.bumptech.glide:ksp")
 }
