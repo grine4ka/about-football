@@ -3,8 +3,10 @@ package com.bykov.footea.teamlineupview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.LinearLayout
-import com.bykov.footea.teamlineupview.databinding.PlayerAvatarNameViewBinding
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bykov.footea.teamlineupview.model.Player
 
 class PlayerAvatarNameView @JvmOverloads constructor(
@@ -13,17 +15,24 @@ class PlayerAvatarNameView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val binding: PlayerAvatarNameViewBinding = PlayerAvatarNameViewBinding.inflate(
-        LayoutInflater.from(context),
-        this
-    )
+    private val username: TextView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.username)
+    }
+
+    private val userAvatar: ImageView by lazy(LazyThreadSafetyMode.NONE) {
+        findViewById(R.id.user_avatar)
+    }
 
     init {
+        LayoutInflater.from(context).inflate(R.layout.player_avatar_name_view, this, true)
         orientation = VERTICAL
     }
 
     fun bind(player: Player) {
-        binding.username.text = player.name
-        binding.userAvatar.setImageResource(R.drawable.ic_avatar_placeholder)
+        username.text = player.name
+        Glide.with(userAvatar)
+            .load(player.avatarUrl)
+            .placeholder(R.drawable.ic_avatar_placeholder)
+            .into(userAvatar)
     }
 }

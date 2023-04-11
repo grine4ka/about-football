@@ -110,14 +110,14 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
         }
         appBarLayout.addOnOffsetChangedListener(appBarOffsetChangeListener)
         titleViewAnimator.onViewsCreated(teamName, toolbarTitle)
-        // TODO refactor this in #
+        // TODO refactor this in #46
         lineupContent.background = HalfFieldDrawable(this)
         lineupContent.findViewById<PlayerAvatarNameView>(R.id.player_1).bind(
             Player(
-                "Lionel Messi",
-                "https://www.thesportsdb.com/images/media/player/thumb/uvuyqx1468874387.jpg",
-                10,
-                "Forward"
+                name = "Lisandro Martínez",
+                avatarUrl = "https://media-1.api-sports.io/football/players/2467.png",
+                number = 6,
+                position = "Defender",
             )
         )
 
