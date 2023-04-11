@@ -23,9 +23,16 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes.getByName("release") {
-        minifyEnabled(false)
-        proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
+
+        // set matching fallbacks for 'debug' builds
+        getByName("debug") {
+            setMatchingFallbacks(listOf("release"))
+        }
     }
 
     kotlinOptions {

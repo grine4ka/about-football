@@ -1,8 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("com.bykov.android-library")
-    id("com.google.devtools.ksp")
+    id("com.bykov.android-library-ksp")
 }
 
 ksp {
@@ -11,8 +10,6 @@ ksp {
 
 // Configure room dependencies
 dependencies {
-    ksp(platform("com.bykov.footea:platform"))
-
     // Room
     implementation("androidx.room:room-runtime")
     implementation("androidx.room:room-rxjava2")
