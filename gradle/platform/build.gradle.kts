@@ -42,7 +42,9 @@ dependencies.constraints {
     api("androidx.palette:palette:1.0.0")
 
     // Images
-    api("com.github.bumptech.glide:glide:4.12.0")
+    val glideVersion = "4.15.1"
+    api("com.github.bumptech.glide:glide:$glideVersion")
+    api("com.github.bumptech.glide:ksp:$glideVersion")
 
     // Unit tests
     // (Required) Writing and executing Unit Tests on the JUnit Platform
