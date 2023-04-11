@@ -4,6 +4,8 @@ plugins {
 
 android {
     namespace = "com.bykov.footea.teamlineupview"
+    // enable viewbinding
+    buildFeatures.viewBinding = true
 }
 
 androidComponents {

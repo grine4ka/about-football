@@ -2,4 +2,7 @@
 <resources>
     <!-- HalfFieldDrawable -->
     <color name="field_line">#808080</color>
+
+    <!-- PlayerAvatarNameView -->
+    <color name="black">#000000</color>
 </resources>
