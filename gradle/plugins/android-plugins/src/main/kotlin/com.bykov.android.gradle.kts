@@ -26,8 +26,6 @@ extensions.configure<BaseExtension>("android") {
 tasks.withType<Test>().configureEach {
     useJUnitPlatform() // Use JUnit 5 as test framework
 
-    testLogging.showStandardStreams = true
-
     maxHeapSize = "1g"
     systemProperty("file.encoding", "UTF-8")
 }

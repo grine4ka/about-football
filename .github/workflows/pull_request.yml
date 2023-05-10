@@ -34,3 +34,8 @@ jobs:
               repo: context.repo.repo,
               body: '❌ ${{ github.workflow }} failed: ${{ steps.gradle.outputs.build-scan-url }}'
             })
+      - name: "HTLM build reports"
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-reports
+          path: app/build/reports/*.html

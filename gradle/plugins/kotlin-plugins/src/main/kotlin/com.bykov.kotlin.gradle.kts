@@ -22,8 +22,6 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform() // Use JUnit 5 as test framework
     maxParallelForks = 4
 
-    testLogging.showStandardStreams = true
-
     maxHeapSize = "1g"
     systemProperty("file.encoding", "UTF-8")
 }
