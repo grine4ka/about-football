@@ -6,10 +6,19 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// Configure Java/Kotlin compilation on java/kotlin {} extension
+// https://kotl.in/gradle/jvm/toolchain
+val javaLanguageVersion = JavaLanguageVersion.of(17)
+kotlin {
+    jvmToolchain {
+        languageVersion.set(javaLanguageVersion)
+    }
+}
+
 extensions.configure<BaseExtension>("android") {
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
