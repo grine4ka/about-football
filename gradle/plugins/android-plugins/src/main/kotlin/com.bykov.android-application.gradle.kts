@@ -35,10 +35,6 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-
     packagingOptions {
         resources.excludes.add("META-INF/**")
     }

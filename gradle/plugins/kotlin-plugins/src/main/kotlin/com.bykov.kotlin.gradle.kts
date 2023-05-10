@@ -4,14 +4,13 @@ plugins {
     id("com.bykov.base")
 }
 
-// Configure Java/Kotlin compilation on java/kotlin {} extension or directly on 'JavaCompile' tasks
-val javaLanguageVersion = JavaLanguageVersion.of(11)
-java {
-    toolchain.languageVersion.set(javaLanguageVersion)
-}
-
+// Configure Java/Kotlin compilation on java/kotlin {} extension
+// https://kotl.in/gradle/jvm/toolchain
+val javaLanguageVersion = JavaLanguageVersion.of(17)
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain {
+        languageVersion.set(javaLanguageVersion)
+    }
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -22,8 +21,6 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.withType<Test>().configureEach {
     useJUnitPlatform() // Use JUnit 5 as test framework
     maxParallelForks = 4
-
-    testLogging.showStandardStreams = true
 
     maxHeapSize = "1g"
     systemProperty("file.encoding", "UTF-8")
