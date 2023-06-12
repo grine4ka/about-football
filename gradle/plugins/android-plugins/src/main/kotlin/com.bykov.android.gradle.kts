@@ -16,9 +16,28 @@ kotlin {
 }
 
 extensions.configure<BaseExtension>("android") {
+    buildToolsVersion("33.0.2")
+    compileSdkVersion(33)
+
+    defaultConfig {
+        minSdk = 26
+        targetSdk = 33
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    with(buildFeatures) {
+        aidl = false
+        compose = false
+        buildConfig = false
+        prefab = false
+        renderScript = false
+        resValues = true
+        shaders = false
+        viewBinding = false
     }
 }
 

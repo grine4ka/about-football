@@ -1,7 +1,6 @@
 plugins {
-    id("java")
-    id("org.jetbrains.kotlin.jvm")
     id("com.bykov.base")
+    id("org.jetbrains.kotlin.jvm")
 }
 
 // Configure Java/Kotlin compilation on java/kotlin {} extension

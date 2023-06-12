@@ -11,12 +11,8 @@ val versionString = version as String
 val versionInt = versionString.split(".")[0].toInt() * 1000 + versionString.split(".")[1].toInt()
 
 android {
-    compileSdk = 33
-
     defaultConfig {
         applicationId = "com.bykov.footea"
-        minSdk = 26
-        targetSdk = 33
         versionCode = versionInt
         versionName = versionString
 
@@ -53,6 +49,9 @@ android {
         // Fallback lint configuration (default severities, etc.)
         lintConfig = file("android-lint.xml")
     }
+
+    // This is needed in AppContainer to access applicationId used in Secrets class
+    buildFeatures.buildConfig = true
 }
 
 // Configure common test runtime dependencies for *all* android projects
