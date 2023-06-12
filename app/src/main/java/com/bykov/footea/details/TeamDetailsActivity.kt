@@ -27,6 +27,7 @@ import com.bykov.footea.teamlineupview.model.Player
 import com.bykov.footea.ui.PaletteRequestListener
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.R as materialR
 
 
 private const val EXTRA_TEAM_ID = "extra_team_id"
@@ -169,7 +170,7 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
     }
 
     private fun animateDomainColor(domainColor: Int) {
-        val colorFrom = getColorFromAttr(R.attr.colorPrimary)
+        val colorFrom = getColorFromAttr(materialR.attr.colorPrimary)
         animateColor(colorFrom, domainColor) { color ->
             appBarLayout.setBackgroundColor(color)
             toolbar.setBackgroundColor(color)
@@ -180,7 +181,7 @@ class TeamDetailsActivity : AppCompatActivity(R.layout.activity_team_details), T
     private fun animateLightColor(lightColor: Int) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-        val colorFrom = getColorFromAttr(R.attr.colorPrimaryVariant)
+        val colorFrom = getColorFromAttr(materialR.attr.colorPrimaryVariant)
         animateColor(colorFrom, lightColor) { color ->
             collapsingToolbarLayout.statusBarScrim = ColorDrawable(color)
             window.navigationBarColor = color
