@@ -1,9 +1,9 @@
-Measurement;Count;Timestamp
-pull_requests;9;1687595696
-pull_requests;11;1687682088
-pull_requests;8;1687768484
-pull_requests;7;1687854879
-pull_requests;10;1687941274
-pull_requests;6;1688027659
-pull_requests;5;1688111434
-pull_requests;0;1688122512
+Measurement,Count,Timestamp
+pull_requests,9,2023-06-24 08:34:56
+pull_requests,11,2023-06-25 08:34:48
+pull_requests,8,2023-06-26 08:34:44
+pull_requests,7,2023-06-27 08:34:39
+pull_requests,10,2023-06-28 08:34:34
+pull_requests,6,2023-06-29 08:34:19
+pull_requests,5,2023-06-30 07:50:34
+pull_requests,0,2023-06-30 10:55:12
