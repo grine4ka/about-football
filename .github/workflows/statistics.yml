@@ -24,8 +24,8 @@ jobs:
                 https://api.github.com/repos/${{ github.repository }}/pulls\?state\=open\&per_page\=100)
           
           GITHUB_PR_COUNT=$(echo "$GITHUB_PRS_RESPONSE" | jq '. | length')
-          TIMESTAMP=$(date +%s)
-          echo "pull_requests;$GITHUB_PR_COUNT;$TIMESTAMP" >> statistics/measurements.csv
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+          echo "pull_requests,$GITHUB_PR_COUNT,$TIMESTAMP" >> statistics/measurements.csv
       - name: Commit report
         run: |
           git config --global user.name 'GitHub Automation'
