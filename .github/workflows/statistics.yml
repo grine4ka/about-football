@@ -11,7 +11,8 @@ jobs:
     permissions:
       pull-requests: read
     steps:
-      - name: Getting open PRs count
+      - uses: actions/checkout@v3
+      - name: Getting open PRs count and put to measurements
         shell: bash
         run: |
           GITHUB_PRS_RESPONSE=$(curl -s \
@@ -22,4 +23,10 @@ jobs:
           
           GITHUB_PR_COUNT=$(echo "$GITHUB_PRS_RESPONSE" | jq '. | length')
           TIMESTAMP=$(date +%s)
-          echo "pull_requests;$GITHUB_PR_COUNT;$TIMESTAMP"
+          echo "pull_requests;$GITHUB_PR_COUNT;$TIMESTAMP" >> statistics/measurements.csv
+      - name: Commit report
+        run: |
+          git config --global user.name 'GitHub Automation'
+          git config --global user.email 'github-automation@users.noreply.github.com'
+          git commit -am "Updating measurements"
+          git push
