@@ -12,8 +12,8 @@ Explicit link to Grafana Dashboard: https://grine4ka.grafana.net/goto/drL2bv94R?
 
 ### Data
 
-Some part of the data in `measurements.csv` is simulated.  
-The other part is real and is got from this repo's PR. Just for the convenience.
+Some part of the data in `measurements.csv` is simulated. Just for the convenience.  
+The other part is real and is got from [kotlinx.serialization github repo](https://github.com/Kotlin/kotlinx.serialization).
 
 The data is updating regularly, once a day. This job is described in github actions workflow in [statistics.yml](../.github/workflows/statistics.yml).
 
