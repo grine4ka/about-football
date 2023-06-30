@@ -9,11 +9,11 @@ on:
 jobs:
   testing-script:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     steps:
       - name: Getting open PRs count
         shell: bash
-        permissions:
-          pull-requests: read
         run: |
           GITHUB_PRS_RESPONSE=$(curl -s \
                 -H "Accept: application/vnd.github+json" \
