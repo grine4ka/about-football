@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - name: Getting open PRs count and put to measurements
