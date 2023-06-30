@@ -10,9 +10,16 @@ Then, using [Grafana Cloud](https://grafana.com/products/cloud/) and [Grafana CS
 
 Explicit link to Grafana Dashboard: https://grine4ka.grafana.net/goto/drL2bv94R?orgId=1
 
-### Updating data
+### Data
 
-The data about open PRs is updating regularly, once a day. This job is described in github actions workflow in [statistics.yml](../.github/workflows/statistics.yml).
+Some part of the data in `measurements.csv` is simulated.  
+The other part is real and is got from this repo's PR. Just for the convenience.
+
+The data is updating regularly, once a day. This job is described in github actions workflow in [statistics.yml](../.github/workflows/statistics.yml).
+
+### Graph
+
+![open prs panel](dashboard.png)
 
 ## Improvements
 
