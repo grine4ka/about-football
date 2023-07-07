@@ -28,10 +28,12 @@ jobs:
           influxdb_version: latest
           influxdb_start: false
       - name: Push data to InfluxDB
-        shell: bash
         run: |
-          cd statistics
-          ./upload_influx.sh
+          influx version
+          cd $GITHUB_WORKSPACE/statistics
+          influx write dryrun -b pr_statistics -f prs.csv \
+            --header "#constant measurement,pull_requests" \
+            --header "#datatype long,string,string,dateTime:RFC3339"
 #      - name: Commit report
 #        run: |
 #          git config --global user.name 'GitHub Automation'
