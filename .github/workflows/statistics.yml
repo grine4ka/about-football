@@ -37,11 +37,3 @@ jobs:
           INFLUX_ORG: ${{ vars.INFLUX_ORG }}
           INFLUX_TOKEN: ${{ secrets.INFLUX_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Commit report
-        run: |
-          git config --global user.name 'GitHub Automation'
-          git config --global user.email 'github-automation@users.noreply.github.com'
-          git add .
-          git status
-#          git commit -am "Updating measurements"
-#          git push
