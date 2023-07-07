@@ -21,7 +21,7 @@ jobs:
           ./get_prs.sh
           cat prs.csv
         env:
-          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup InfluxDB
         uses: influxdata/influxdb-action@v3
         with:
