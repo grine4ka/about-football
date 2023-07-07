@@ -22,11 +22,11 @@ jobs:
           cat prs.csv
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup InfluxDB CLI
+      - name: Install InfluxDB CLI
         run: |
-          curl -o /opt/influx/influxdb2-cli.tar.gz https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.7.3-linux-amd64.tar.gz
-          tar xvzf /opt/influx/influxdb2-cli.tar.gz -C /opt/influx/
-          sudo cp /opt/influx/influx /usr/local/bin/
+          curl -o influxdb2-cli.tar.gz https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.7.3-linux-amd64.tar.gz
+          mkdir influx && tar xvzf influxdb2-cli.tar.gz -C influx/
+          sudo cp influx/influx /usr/local/bin/
       - name: Push data to InfluxDB
         run: |
           influx version
