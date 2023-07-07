@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '30 14 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   pr-statistics:
@@ -17,18 +17,24 @@ jobs:
       - name: Getting open PRs count and put to measurements
         shell: bash
         run: |
-          GITHUB_PRS_RESPONSE=$(curl -s \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                https://api.github.com/repos/Kotlin/kotlinx.serialization/pulls\?state\=open\&per_page\=100)
-          
-          GITHUB_PR_COUNT=$(echo "$GITHUB_PRS_RESPONSE" | jq '. | length')
-          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-          echo "pull_requests,$GITHUB_PR_COUNT,$TIMESTAMP" >> statistics/measurements.csv
-      - name: Commit report
+          cd statistics
+          ./get_prs.sh
+          cat prs.csv
+        env:
+          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+      - name: Setup InfluxDB
+        uses: influxdata/influxdb-action@v3
+        with:
+          influxdb_version: latest
+          influxdb_start: false
+      - name: Push data to InfluxDB
+        shell: bash
         run: |
-          git config --global user.name 'GitHub Automation'
-          git config --global user.email 'github-automation@users.noreply.github.com'
-          git commit -am "Updating measurements"
-          git push
+          cd statistics
+          ./upload_influx.sh
+#      - name: Commit report
+#        run: |
+#          git config --global user.name 'GitHub Automation'
+#          git config --global user.email 'github-automation@users.noreply.github.com'
+#          git commit -am "Updating measurements"
+#          git push
