@@ -36,6 +36,33 @@ This job is described in github actions workflow in [statistics.yml](../.github/
 
 ![open prs panel](new_dashboard.png)
 
+InfluxDB select statement to get this data:
+
+```sql
+SELECT 
+  count(*) as opened,
+  days.day
+FROM 
+  "pull_requests",
+  (
+  SELECT
+    date_bin_gapfill(INTERVAL '1 day', time) as day
+  FROM "pull_requests"
+  WHERE
+  time <= now()
+  AND
+  time >= '2020-01-01T00:00:00Z'::TIMESTAMP
+  GROUP BY
+    date_bin_gapfill(INTERVAL '1 day', time)
+  ) as days
+WHERE
+  (days.day >= created_at)
+  AND 
+  (days.day <= closed_at or closed_at is null)
+GROUP BY days.day
+ORDER BY days.day
+```
+
 ## Improvements
 
 1. Get rid of that workaround with additional `timestamp` column and use `created_at` column as a primary key for InfluxDB table.
