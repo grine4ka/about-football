@@ -29,6 +29,8 @@ where `timestamp` column is used as a primary key for InfluxDB table.
 > `timestamp` column is a workaround for the 30 days retention policy for InfluxDB cloud instance.
 > 
 
+An example of the data can be seen in [prs.csv](prs.csv) file.
+
 The data is updating regularly, once a day, by deleting bucket, creating it again and then pushing data to the newly created bucket.  
 This job is described in github actions workflow in [statistics.yml](../.github/workflows/statistics.yml).
 
