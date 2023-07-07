@@ -22,21 +22,23 @@ jobs:
           cat prs.csv
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup InfluxDB
-        uses: influxdata/influxdb-action@v3
-        with:
-          influxdb_version: latest
-          influxdb_start: false
+      - name: Setup InfluxDB CLI
+        run: |
+          curl -o /opt/influx/influxdb2-cli.tar.gz https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.7.3-linux-amd64.tar.gz
+          tar xvzf /opt/influx/influxdb2-cli.tar.gz -C /opt/influx/
+          sudo cp /opt/influx/influx /usr/local/bin/
       - name: Push data to InfluxDB
         run: |
-          /usr/local/bin/influx version
+          influx version
           cd $GITHUB_WORKSPACE/statistics
-          /usr/local/bin/influx write dryrun -b pr_statistics -f prs.csv \
+          influx write dryrun -b pr_statistics -f prs.csv \
             --header "#constant measurement,pull_requests" \
             --header "#datatype long,string,string,dateTime:RFC3339"
-#      - name: Commit report
-#        run: |
-#          git config --global user.name 'GitHub Automation'
-#          git config --global user.email 'github-automation@users.noreply.github.com'
+      - name: Commit report
+        run: |
+          git config --global user.name 'GitHub Automation'
+          git config --global user.email 'github-automation@users.noreply.github.com'
+          git add .
+          git status
 #          git commit -am "Updating measurements"
 #          git push
