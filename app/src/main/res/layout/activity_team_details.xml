@@ -208,7 +208,105 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            tools:background="#EAF0CE"/>
+
+                        <androidx.constraintlayout.helper.widget.Flow
+                            android:id="@+id/defenders_flow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:flow_wrapMode="chain"
+                            app:flow_maxElementsWrap="5"
+                            app:constraint_referenced_ids="player_2,player_3,player_4,player_5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/player_1"/>
+
+                        <androidx.constraintlayout.helper.widget.Flow
+                            android:id="@+id/midfielders_flow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:flow_wrapMode="chain"
+                            app:flow_maxElementsWrap="5"
+                            app:constraint_referenced_ids="player_6,player_7,player_8,player_9"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/defenders_flow"/>
+
+                        <androidx.constraintlayout.helper.widget.Flow
+                            android:id="@+id/forwards_flow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:flow_wrapMode="chain"
+                            app:flow_maxElementsWrap="4"
+                            app:constraint_referenced_ids="player_10,player_11"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/midfielders_flow"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
+
+                        <com.bykov.footea.teamlineupview.PlayerAvatarNameView
+                            android:id="@+id/player_11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:background="#EAF0CE"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
