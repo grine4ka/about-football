@@ -10,4 +10,4 @@ dependencyResolutionManagement {
     includeBuild(".")
 }
 
-rootProject.name = "Footea"
+rootProject.name = "footea"
