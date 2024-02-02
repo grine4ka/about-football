@@ -27,11 +27,11 @@ android {
 
         // set matching fallbacks for 'debug' builds
         getByName("debug") {
-            setMatchingFallbacks(listOf("release"))
+            matchingFallbacks.add("release")
         }
     }
 
-    packagingOptions {
+    packaging {
         resources.excludes.add("META-INF/**")
     }
 
